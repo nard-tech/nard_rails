@@ -1,0 +1,28 @@
+.bundle/
+log/*.log
+pkg/
+test/dummy/db/*.sqlite3
+test/dummy/db/*.sqlite3-journal
+test/dummy/log/*.log
+test/dummy/tmp/
+test/dummy/.sass-cache
+
+
+#-------- customized settings
+
+#---- environment
+
+/**/.keep
+/**/.DS_Store
+
+#---- lib
+
+/lib/docs
+/lib/db
+/lib/tasks/for_me
+/lib/assets/for_me
+
+#---- temp
+
+/to_do.txt
+/db/tmp
