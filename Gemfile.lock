@@ -4,6 +4,7 @@ PATH
     nard_rails (0.0.1.alpha)
       rails (~> 4.2.5)
       require_all
+      settingslogic
 
 GEM
   remote: https://rubygems.org/
@@ -133,6 +134,7 @@ GEM
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    settingslogic (2.0.9)
     slop (3.6.0)
     spring (1.3.6)
     sprockets (3.5.2)

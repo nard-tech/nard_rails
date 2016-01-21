@@ -1,0 +1,13 @@
+.btns.clr
+  - if btn_for_edit_page
+    - if  _flash['status'] == 'created'
+      = d.send(:render_btn_for_edit_page, after_created: true)
+      = create_button( d.object.class.name.to_s.tableize )
+    - else
+      = d.send(:render_btn_for_edit_page)
+
+  - if other_btns.present?
+    - other_btns.each do |other_btn|
+      = other_btn
+
+  = d.class.render_btn_for_list_page

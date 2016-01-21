@@ -1,0 +1,2 @@
+module Nard::Mailer
+end

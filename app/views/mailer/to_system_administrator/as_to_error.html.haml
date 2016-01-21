@@ -1,0 +1,25 @@
+「#{Settings::Static.app_title}」でエラーが発生しました。
+%br
+%p<
+  \------------------------------------------------------------------------<br>
+%p<
+  = @error_data[:error_inspect]
+%p<
+  \------------------------------------------------------------------------<br>
+%p<
+  = "time: " + l( Time.now )
+%p<
+  = "controller_name: " + @error_data[:controller_name]
+%p<
+  = "action_name: " + @error_data[:action_name]
+%p<
+  = "user: " + @error_data[:user].inspect
+%p<
+  = "params: " + @error_data[:params].inspect
+%p<
+  \------------------------------------------------------------------------<br>
+%p<
+  = "backtrace: "
+- @error_data[:backtrace].each do | row |
+  %p<
+    = row

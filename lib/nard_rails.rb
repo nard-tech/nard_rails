@@ -1,4 +1,6 @@
-require "nard_rails/engine"
+require 'nard_rails/version'
 
-module NardRails
+module Nard
+  module Rails
+  end
 end

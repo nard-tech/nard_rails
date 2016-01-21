@@ -1,0 +1,297 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+# Base: https://gist.github.com/satour/6c15f27211fdc0de58b4 (Devise Version >= 3.4.0)
+
+ja:
+  devise:
+
+    #--------------------------------
+
+    confirmations:
+
+      #-------- Normal
+
+      # confirmed: 'アカウントを登録しました。'
+      # send_instructions: 'アカウントの有効化について数分以内にメールでご連絡します。'
+      # send_paranoid_instructions: 'あなたのメールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。'
+
+      #-------- Over-ride
+
+      confirmed: 'メールアドレスの認証に成功しました。'
+      send_instructions: 'メールアドレスの認証方法をメールでご連絡します。'
+      send_paranoid_instructions: 'あなたのメールアドレスがすでに登録されている場合、メールアドレスの認証方法をメールでご連絡します。'
+
+      #-------- Customized
+
+      change_email_confirmed: 'メールアドレスが変更されました。'
+
+    #--------------------------------
+
+    failure:
+
+      #-------- Normal
+
+      already_authenticated: 'すでにログインしています。'
+      # inactive: 'アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。'
+      # invalid: "%{authentication_keys} もしくはパスワードが不正です。"
+      locked: 'あなたのアカウントは凍結されています。'
+      # last_attempt: 'あなたのアカウントが凍結される前に、複数回の操作がおこなわれています。'
+      # not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
+      # timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+      # unauthenticated: 'アカウント登録もしくはログインしてください。'
+      # unconfirmed: 'メールアドレスの本人確認が必要です。'
+
+      #-------- Over-ride
+
+      inactive: 'アカウントが有効になっていません。お送りしたメールに記載された手順にしたがって、アカウントを有効化してください。'
+      invalid: "%{authentication_keys} もしくはパスワードが正しくありません。"
+      last_attempt: 'あと1回ログインに失敗すると、あなたのアカウントは凍結されます。'
+      not_found_in_database:  "%{authentication_keys} もしくはパスワードが正しくありません。"
+      timeout: '一定時間が経過したため、再度ログインが必要です。'
+      unauthenticated: '続けるためには、ログインまたは登録（サインアップ）が必要です。'
+      unconfirmed: '続けるためには、メールアドレスの認証が必要です。'
+
+    #--------------------------------
+
+    mailer:
+
+      #-------- Normal
+
+      confirmation_instructions:
+        subject: 'アカウントの有効化について'
+      reset_password_instructions:
+        subject: 'パスワードの再設定について'
+      unlock_instructions:
+        subject: 'アカウントの凍結解除について'
+      password_change:
+        subject: 'パスワードが変更されました'
+
+      #-------- Over-ride
+
+      # confirmation_instructions:
+      #   subject: 'アカウントの登録方法'
+      #   subject: '仮登録完了 - 登録メールアドレスの承認'
+      # reset_password_instructions:
+      #   subject: 'パスワードの再設定'
+      # unlock_instructions:
+      #   subject: 'アカウントの凍結解除'
+      #   subject: 'アカウントのロック解除'
+
+    #--------------------------------
+
+    omniauth_callbacks:
+
+      #-------- Normal
+
+      # failure: "%{kind} アカウントによる認証に失敗しました。理由：（%{reason}）"
+      # success: "%{kind} アカウントによる認証に成功しました。"
+
+      #-------- Over-ride
+
+      #---- [Pattern 1]
+
+      failure: "%{kind} アカウントによる認証に失敗しました。（理由：%{reason}）"
+      success: "%{kind} アカウントによる認証に成功しました。"
+
+      #---- [Pattern 2]
+
+      # failure: "%{kind} から承認されませんでした。（理由：%{reason}）"
+      # success: "%{kind} から承認されました。"
+
+    #--------------------------------
+
+    passwords:
+
+      #-------- Normal
+
+      no_token: 'このページにはアクセスできません。パスワード再設定メールのリンクからアクセスされた場合には、URL をご確認ください。'
+      # send_instructions: 'パスワードの再設定について数分以内にメールでご連絡いたします。'
+      # send_paranoid_instructions: 'あなたのメールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。'
+      # updated: 'パスワードが正しく変更されました。'
+      # updated_not_active: 'パスワードが正しく変更されました。'
+
+      #-------- Over-ride
+
+      send_instructions: 'パスワードの再設定方法をメールでご連絡します。'
+      send_paranoid_instructions: 'メールアドレスがすでに登録されている場合、パスワード再設定のご案内をメールでご連絡します。'
+      updated: 'パスワードを変更しました。（現在ログイン中です）'
+      updated_not_active: 'パスワードを変更しました。'
+
+    #--------------------------------
+
+    registrations:
+
+      #-------- Normal
+
+      destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
+      signed_up: 'アカウント登録が完了しました。'
+      # signed_up_but_inactive: 'ログインするためには、アカウントを有効化してください。'
+      # signed_up_but_locked: 'アカウントが凍結されているためログインできません。'
+      # signed_up_but_unconfirmed: '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
+      # update_needs_confirmation: 'アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。'
+      # updated: 'アカウント情報を変更しました。'
+
+      #-------- Over-ride
+
+      # signed_up: 'ようこそ！アカウント登録を受け付けました。'
+      signed_up_but_inactive: 'アカウントは登録されていますが、有効になっていないため利用できません。ログインするためには、アカウントを有効にしてください。'
+      signed_up_but_unconfirmed: '本人確認のためのメールを、登録されたメールアドレス宛に送信しました。メールに記載されたリンクを開き、アカウントを有効にして下さい。'
+      update_needs_confirmation: 'アカウント情報が更新されました。新しいメールアドレスの確認が必要です。更新確認のメールを新しいメールアドレス宛に送信しましたので、メールを確認し記載されたリンクを開き、新しいメールアドレスの確認をお願いします。'
+      updated: 'アカウントが更新されました。'
+
+      #---- [Pattern 1]
+      signed_up_but_locked: 'アカウントは登録されていますが、凍結されているため利用できません。'
+
+      #---- [Pattern 2]
+      # signed_up_but_locked: 'アカウントは登録されていますが、ロックされているため利用できません。'
+
+    #--------------------------------
+
+    sessions:
+
+      #-------- Normal
+
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+      # already_signed_out: '既にログアウト済みです。'
+
+      #-------- Over-ride
+
+      already_signed_out: 'すでにログアウトしています。'
+
+    #--------------------------------
+
+    unlocks:
+
+      #-------- Normal
+
+      # send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      # send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
+      # unlocked: 'アカウントを凍結解除しました。'
+
+      #-------- Over-ride
+
+      #---- [Pattern 1]
+
+      send_instructions: 'アカウントの凍結を解除する方法をメールでご連絡します。'
+      send_paranoid_instructions: 'アカウントが存在する場合、凍結を解除する方法をメールでご連絡します。'
+      unlocked: 'アカウントの凍結が解除されました。続けるにはログインして下さい。'
+
+      #---- [Pattern 2]
+
+      # send_instructions: 'アカウントのロックを解除する方法をメールでご連絡します。'
+      # send_paranoid_instructions: 'アカウントが存在する場合、ロックを解除する方法をメールでご連絡します。'
+      # unlocked: 'アカウントのロックが解除されました。続けるにはログインして下さい。'
+
+    #--------------------------------
+
+    #-------- Customized
+
+    pages:
+      headers:
+        buttons:
+          sign_up: 新規登録
+          sign_in: ログイン
+          change_profile: 登録情報の変更
+          sign_out: ログアウト
+      confirmations:
+        new:
+          header: '確認メールが届いていない方は…' # Resend confirmation instructions
+          messages:
+            precise: '以下にメールアドレスをご記入の上、「再送信」ボタンを押してください。確認メールを改めてお送りします。'
+          submit: 再送信 # Resend confirmation instructions
+      registrations:
+        new:
+          header: 新規登録 # Sign up
+          labels:
+            password_confirmation: パスワード 再入力
+          submit: 登録
+          messages:
+            password_length: "%{length}文字以上で入力してください。"
+            type_password_again: '確認のため、上と同じパスワードをもう一度入力してください。'
+        edit:
+          header: 登録情報の変更 # Edit #{resource_name.to_s.humanize}
+          labels:
+            current_password: 現在のパスワード
+            new_password: 新しいパスワード
+            new_password_confirmation: 新しいパスワード 再入力
+          messages:
+            leave_blank: 'パスワードを変更しない場合、以下の2項目は空白のままにしてください。'
+            type_new_password_again: 'パスワードを変更する場合は、確認のため、上と同じパスワードをもう一度入力してください。'
+            type_current_password: '現在の（パスワードを変更する場合は、変更前の）パスワードを入力してください。'
+          submit: 変更 # Update
+          cancel_account:
+            header: 登録情報の削除 # Cancel my account
+            messages:
+              unhappy: '一度削除した登録情報は復元できません。次回ご利用になる際は、再度登録が必要となります。' # Unhappy?
+              final: 登録情報を削除します
+              confirmation: よろしいですか？
+            submit: 消去 # Cancel my account
+      sessions:
+        new:
+          header: ログイン # Log in
+          labels:
+            remember_me: パスワードを記憶する # Remember Me
+          submit: ログインする
+      passwords:
+        new:
+          header: 'パスワードをお忘れの方は…' # Forgot your password?
+          messages:
+            precise: '以下にメールアドレスをご記入の上、「送信」ボタンを押してください。パスワード再設定のご案内をお送りします。'
+          submit: 送信
+        edit:
+          header: パスワードの変更 # Change your password
+          messages:
+            precise: 以下に新しいパスワードを入力し、「変更」ボタンを押してください。
+            password_length: "%{length}文字以上で入力してください。"
+          labels:
+            new_password: 新しいパスワード
+            new_password_confirmation: 新しいパスワード 再入力
+          submit: 変更
+      unlocks:
+        new:
+          header: 'アカウント凍結解除のメールが届いていない方は…' # Resend unlock instructions
+          messages:
+            precise: '以下にメールアドレスをご記入の上、「送信」ボタンを押してください。アカウント凍結解除のご案内のメールを改めてお送りします。'
+          submit: 送信
+
+      shared:
+        links:
+          sign_in: 'すでにアカウントをお持ちの方はこちら' # Log in
+          sign_up: '登録がまだの方はこちら' # Sign up
+          forgot_password: 'パスワードをお忘れの方はこちら' # Forgot your password?
+          resend_confirmation_instructions: '確認メールが届いていない方はこちら' # Didn't receive confirmation instructions?
+          resend_unlock_instructions: 'アカウント凍結解除のメールが届いていない方はこちら' # Didn't receive unlock instructions?
+
+  #----------------------------------------------------------------
+
+  errors:
+    messages:
+
+      #-------- Normal
+
+      # already_confirmed: 'は既に登録済みです。ログインしてください。'
+      # confirmation_period_expired: "の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。"
+      # expired: 'の有効期限が切れました。新しくリクエストしてください。'
+      # not_found: 'は見つかりませんでした。'
+      # not_locked: 'は凍結されていません。'
+      # not_saved:
+      #   one: "エラーが発生したため %{resource} は保存されませんでした:"
+      #   other: "%{count}件のエラーが発生したため %{resource} は保存されませんでした:"
+
+      #-------- Over-ride
+
+      already_confirmed: 'すでに登録済みです。ログインしてください。'
+      confirmation_period_expired: "%{period}以内に確認する必要がありますので、新しくリクエストしてください。"
+      expired: '有効期限切れです。新しくリクエストしてください。'
+      not_found: '見つかりませんでした。'
+      not_saved:
+        one: "1件のエラーが発生したため、%{resource}を保存できませんでした："
+        other: "%{count}件のエラーが発生したため、%{resource}を保存できませんでした："
+
+      #---- [Pattern 1]
+
+      not_locked: '凍結されていません。'
+
+      #---- [Pattern 2]
+
+      # not_locked: 'ロックされていません。'

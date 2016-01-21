@@ -1,0 +1,7 @@
+#error_explanation
+  %h2.title<
+    = title
+    %ul.messages
+      - error_msgs.each do | msg |
+        %li.messages<
+          = msg

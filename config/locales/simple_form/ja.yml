@@ -1,0 +1,8 @@
+ja:
+  simple_form:
+    "yes": 'はい'
+    "no": 'いいえ'
+    required:
+      # text: '必須'
+      # mark: "<span class='badge badge-required'>必須</span>"
+      html: '<span class="badge badge-required">必須</span>'
