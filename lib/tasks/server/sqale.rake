@@ -1,3 +1,5 @@
+require 'fileutils'
+
 namespace :server do
   namespace :sqale do
     namespace :postinstall do

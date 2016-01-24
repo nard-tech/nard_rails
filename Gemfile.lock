@@ -5,6 +5,9 @@ PATH
       rails (~> 4.2.5)
       require_all
       settingslogic
+      yard
+      yard-activesupport-concern
+      yard-rails
 
 GEM
   remote: https://rubygems.org/
@@ -155,6 +158,11 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    yard (0.8.7.6)
+    yard-activesupport-concern (0.0.1)
+      yard (>= 0.8)
+    yard-rails (0.3.0)
+      yard
 
 PLATFORMS
   ruby

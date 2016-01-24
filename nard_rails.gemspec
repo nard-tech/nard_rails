@@ -21,6 +21,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'require_all'
   s.add_dependency 'settingslogic'
 
+  s.add_dependency 'yard'
+  s.add_dependency 'yard-rails'
+  s.add_dependency 'yard-activesupport-concern'
+
   s.add_development_dependency 'sqlite3'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
