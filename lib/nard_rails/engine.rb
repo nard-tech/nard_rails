@@ -2,6 +2,7 @@ require 'rails/all'
 require 'require_all'
 
 require 'nard_rails'
+require 'twitter'
 
 module Nard
   module Rails

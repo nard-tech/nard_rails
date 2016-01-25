@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.5"
+  s.add_dependency 'twitter'
   s.add_dependency 'require_all'
   s.add_dependency 'settingslogic'
 
@@ -47,6 +48,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'better_errors'
   # テスト実行時のシステムの時刻を任意に設定
   s.add_development_dependency 'timecop'
+
 end
 
 
