@@ -30,5 +30,15 @@ namespace :server do
       end
 
     end
+
+    namespace :tmp_dir do
+      desc 'Reset tmp dir'
+      task reset: :environment do
+        Dir.glob( "#{ Rails.root }/public/uploads/tmp/**/**.*" ).sort.each do | file |
+          File.delete(file)
+        end
+      end
+    end
+
   end
 end
