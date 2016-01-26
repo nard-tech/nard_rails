@@ -2,6 +2,9 @@ class Nard::Rails::TweetService
 
   LIMIT_LENGTH = 140
 
+  CHARACTERS_REDUCED_BY_IMAGE = 23
+  CHARACTERS_REDUCED_BY_URL = 22
+
   def initialize( auto_post )
     @auto_post = auto_post
 
