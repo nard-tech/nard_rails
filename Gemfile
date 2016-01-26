@@ -12,3 +12,7 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+git 'https://github.com/osorubeki-fujita/nard_utils.git' do
+  gem 'nard_utils'
+end
