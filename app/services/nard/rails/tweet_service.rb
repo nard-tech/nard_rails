@@ -25,7 +25,7 @@ class Nard::Rails::TweetService
     delegate method_name, to: :auto_post
   end
 
-  [ :id, :media_object, :options ].each do | method_name |
+  [ :id, :media_file_object, :options, :has_media_file? ].each do | method_name |
     delegate method_name, to: :auto_post, prefix: true
   end
 
@@ -41,8 +41,8 @@ class Nard::Rails::TweetService
     puts tweet_formatted
 
     begin
-      if @auto_post.has_media?
-        @client.update_with_media( tweet_formatted, auto_post_media_object, auto_post_options )
+      if auto_post_has_media_file?
+        @client.update_with_media( tweet_formatted, auto_post_media_file_object, auto_post_options )
       else
         @client.update( tweet_formatted, auto_post_options )
       end
