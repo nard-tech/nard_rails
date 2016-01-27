@@ -9,7 +9,7 @@ module Nard::Rails::DictionaryHelper
     ary = label.split('.')
     # puts ary.to_s
 
-    model = ary[0].constantize
+    model = ary[0].camelize.constantize
     # puts "Model: #{model}"
     begin
       case ary.length
