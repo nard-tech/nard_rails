@@ -1,11 +1,11 @@
 namespace :twitter do
 
   desc 'Tweet automatically'
-  task :auto_tweet, [:user_name, :setting] => :environment do |t, args|
-    user_name = args[:user_name]
+  task :auto_tweet, [:account_name, :setting] => :environment do |t, args|
+    account_name = args[:account_name]
     settings = args[:setting]
 
-    twitter_account = TwitterAccount.find_by( user_name: user_name )
+    twitter_account = TwitterAccount.find_by( name: account_name )
 
     if settings.present? and /\A\d+\Z/ === settings
       auto_post_id = settings.to_i
