@@ -19,6 +19,12 @@ module Nard
 
       config.i18n.load_path += Dir[ Nard::Rails::Engine.root.join( 'config' , 'locales' , '**' , '*.{rb,yml}' ).to_s ]
 
+      ::Rails::Application.class_eval do
+        def on_sqale?
+          ::Rails.env.production? and ::ENV['HOME'].present? and ::ENV['HOME'] == '/home/sqale'
+        end
+      end
+
     end
   end
 end
