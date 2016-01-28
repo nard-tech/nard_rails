@@ -1,5 +1,11 @@
 require 'fileutils'
 
+module Sqale
+  class EnvironmentError < ::StandardError
+  end
+end
+
+
 namespace :server do
   namespace :sqale do
     namespace :postinstall do
@@ -34,8 +40,16 @@ namespace :server do
     namespace :tmp_dir do
       desc 'Reset tmp dir'
       task reset: :environment do
-        Dir.glob( "#{ Rails.root }/public/uploads/tmp/**/**.*" ).sort.each do | file |
-          File.delete(file)
+        begin
+          raise Sqale::EnvironmentError unless Rails.application.on_sqale?
+
+          Dir.glob( "#{ Rails.root }/public/uploads/tmp/**/**.*" ).sort.each do | file |
+            File.delete(file)
+          end
+
+        rescue Sqale::EnvironmentError
+          puts 'Sqale::EnvironmentError'
+          nil
         end
       end
     end
