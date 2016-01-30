@@ -46,7 +46,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
         e: e,
         controller_name: controller_name,
         action_name: action_name,
-        user: current_user,
+        user: __current_user__,
         params: params,
         backtrace: @exception.backtrace
       }
@@ -66,6 +66,14 @@ module Nard::Rails::ControllerExt::ErrorHandlers
       render json: { error: '500 error' }, status: :internal_server_error , layout: nil
     else
       render template: 'errors/internal_server_error', status: :internal_server_error , content_type: 'text/html'
+    end
+  end
+
+  def __current_user__
+    if respond_to?(:_current_user, true) and rails_admin_controller?
+      _current_user
+    else
+      current_user
     end
   end
 
