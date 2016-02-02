@@ -193,6 +193,14 @@ ja:
           sign_in: ログイン
           change_profile: 登録情報の変更
           sign_out: ログアウト
+      common:
+        labels:
+          password_confirmation: パスワード 再入力
+          current_password: 現在のパスワード
+          new_password: 新しいパスワード
+          new_password_confirmation: 新しいパスワード 再入力
+        messages:
+          password_length: "%{length}文字以上で入力してください。"
       confirmations:
         new:
           header: '確認メールが届いていない方は…' # Resend confirmation instructions
@@ -202,18 +210,11 @@ ja:
       registrations:
         new:
           header: 新規登録 # Sign up
-          labels:
-            password_confirmation: パスワード 再入力
           submit: 登録
           messages:
-            password_length: "%{length}文字以上で入力してください。"
             type_password_again: '確認のため、上と同じパスワードをもう一度入力してください。'
         edit:
           header: 登録情報の変更 # Edit #{resource_name.to_s.humanize}
-          labels:
-            current_password: 現在のパスワード
-            new_password: 新しいパスワード
-            new_password_confirmation: 新しいパスワード 再入力
           messages:
             leave_blank: 'パスワードを変更しない場合、以下の2項目は空白のままにしてください。'
             type_new_password_again: 'パスワードを変更する場合は、確認のため、上と同じパスワードをもう一度入力してください。'
@@ -242,10 +243,6 @@ ja:
           header: パスワードの変更 # Change your password
           messages:
             precise: 以下に新しいパスワードを入力し、「変更」ボタンを押してください。
-            password_length: "%{length}文字以上で入力してください。"
-          labels:
-            new_password: 新しいパスワード
-            new_password_confirmation: 新しいパスワード 再入力
           submit: 変更
       unlocks:
         new:
