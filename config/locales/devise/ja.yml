@@ -219,6 +219,7 @@ ja:
             leave_blank: 'パスワードを変更しない場合、以下の2項目は空白のままにしてください。'
             type_new_password_again: 'パスワードを変更する場合は、確認のため、上と同じパスワードをもう一度入力してください。'
             type_current_password: '現在の（パスワードを変更する場合は、変更前の）パスワードを入力してください。'
+            currently_waiting_confirmation: "%{email} にお送りしたメールから、本登録を行なってください。"
           submit: 変更 # Update
           cancel_account:
             header: 登録情報の削除 # Cancel my account
