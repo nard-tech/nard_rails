@@ -29,7 +29,7 @@ module Nard
   end
 end
 
-[ 'controller_ext', 'model_ext', 'decorator_ext' ].each do | dirname |
+[ 'controller_ext', 'model_ext', 'decorator_ext', 'gem_ext' ].each do | dirname |
   require_relative "./#{dirname}"
   require_all File.join( Nard::Rails::Engine.root, 'lib', 'nard_rails', dirname, '**', '**.rb' )
 end
