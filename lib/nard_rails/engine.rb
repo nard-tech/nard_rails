@@ -9,11 +9,10 @@ module Nard
     class Engine < ::Rails::Engine
 
       config.to_prepare do
-        Dir.glob(Nard::Rails::Engine.root + "app/errors/**/**.rb").each do |c|
-          require_dependency(c)
-        end
-        Dir.glob(Nard::Rails::Engine.root + "app/services/**/**.rb").each do |c|
-          require_dependency(c)
+        [ 'errors', 'services', 'inputs' ].each do | dir |
+          Dir.glob("#{ Nard::Rails::Engine.root }/app/#{ dir }/**/**.rb").each do |c|
+            require_dependency(c)
+          end
         end
       end
 
