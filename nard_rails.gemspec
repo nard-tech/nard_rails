@@ -22,6 +22,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'require_all'
   s.add_dependency 'settingslogic'
 
+  s.add_dependency 'draper'
+  s.add_dependency 'kaminari'
+  s.add_dependency 'simple_form'
+
   s.add_dependency 'yard'
   s.add_dependency 'yard-rails'
   s.add_dependency 'yard-activesupport-concern'
@@ -39,7 +43,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec', '~> 3.4.0'
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'kaminari'
 
   s.add_development_dependency 'pry'
   s.add_development_dependency 'pry-rails'
