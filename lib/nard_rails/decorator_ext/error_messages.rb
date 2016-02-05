@@ -2,12 +2,14 @@ module Nard::Rails::DecoratorExt::ErrorMessages
 
   # @!group Instance methods - Rendering
 
+  # @todo listener gohobi
   def render_error_messages
     if object.errors.any?
-      title = "#{object.errors.count}件のエラーがあります。"
+      title = '以下の内容をご確認の上、もう一度送信してください。'
+      # title = "#{object.errors.count}件のエラーがあります。"
       # title = "#{pluralize(object.errors.count, "error")} prohibited this pack_area from being saved:"
 
-      h.concat h.render(partial: 'shared/errors', locals: {title: title, error_msgs: error_messages})
+      h.concat h.render(partial: 'nard/rails/shared/errors', locals: {object: object, title: title, error_messages: error_messages})
     end
     nil
   end
@@ -22,12 +24,12 @@ module Nard::Rails::DecoratorExt::ErrorMessages
     error_msgs = []
     if object.errors.any?
       object.errors.full_messages.each do | msg |
-        unless msg == Settings::Static.msg_when_failing_update
+        unless msg == Settings::Static.messages.when_failing_update
           error_msgs << msg
         end
       end
-      if object.errors.full_messages.include?(Settings::Static.msg_when_failing_update)
-        error_msgs << Settings::Static.msg_when_failing_update
+      if object.errors.full_messages.include?(Settings::Static.messages.when_failing_update)
+        error_msgs << Settings::Static.messages.when_failing_update
       end
     end
     error_msgs

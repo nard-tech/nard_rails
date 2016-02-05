@@ -1,0 +1,8 @@
+- if object.errors.any?
+  .error_explanation
+    %h3.h4.error-title<
+      = title
+    %ul.errors
+      - error_messages.each do | msg |
+        %li.error<
+          = msg
