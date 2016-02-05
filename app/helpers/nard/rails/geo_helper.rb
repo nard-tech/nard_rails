@@ -10,6 +10,14 @@ module Nard::Rails::GeoHelper
     h
   end
 
+  def jp_prefectures_for_enumerize_config
+    h = Hash.new
+    I18n.t('geo.prefectures').values.each do |v|
+      h[ v[:name_e] ] = v[:name]
+    end
+    h
+  end
+
   def jp_prefectures_in_select_box
     I18n.t('geo.prefectures').map { |k,v| [ v[:name] , v[:name_e] ] }
   end
