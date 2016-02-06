@@ -1,0 +1,17 @@
+「#{Settings::Static.app_title}」
+
+#{ @contact.name }さまからのお問い合わせがありました。
+
+%p
+  \=============================================================<br>
+  お問い合わせ<br>
+  \=============================================================
+
+- @containers.each.with_index do | container, i |
+  :ruby
+    str = "#{ container[:title] }：#{ container[:info] }"
+    unless i == @containers.length
+      str += '<br />'
+    end
+  %p<
+    = raw( str )

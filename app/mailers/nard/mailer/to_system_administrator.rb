@@ -10,7 +10,7 @@ class Nard::Mailer::ToSystemAdministrator < Nard::Mailer::Master
     subject = "【#{Settings::Static.app_title}】エラー発生"
 
     mail( to: send_to, from: send_from , subject: subject ) do | format |
-      format.html { render }
+      format.html { render 'mailer/nard/rails/to_system_administrator/as_to_error' }
     end
   end
 
