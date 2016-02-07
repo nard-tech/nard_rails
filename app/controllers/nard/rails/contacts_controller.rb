@@ -26,7 +26,9 @@ class Nard::Rails::ContactsController < Nard::Rails::AppController
     session_handler.delete!( :contact  )
 
     if @contact.save
-      ::Mailer::ToAdministrator.as_to_contact(@contact).deliver_later
+      ::Thread.start( @contact ) do | contact |
+        ::Mailer::ToAdministrator.as_to_contact(contact).deliver_later
+      end
       render 'done'
     else
       @contact.errors[ :base ] << t( 'helpers.errors.submit' )
