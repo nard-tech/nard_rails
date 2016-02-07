@@ -1,6 +1,6 @@
 class Nard::Mailer::ToSystemAdministrator < Nard::Mailer::Master
 
-  default from: Settings::Static.action_mailer.main_email_address
+  default from: Settings::Static.action_mailer.noreply_email_address
   default to: Settings::Static.action_mailer.system_admin_email_address
 
   def as_to_error( error_data )

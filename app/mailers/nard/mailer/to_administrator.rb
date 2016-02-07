@@ -1,6 +1,6 @@
 class Nard::Mailer::ToAdministrator < Nard::Mailer::Master
 
-  default from: Settings::Static.action_mailer.main_email_address
+  default from: Settings::Static.action_mailer.noreply_email_address
   default to: Settings::Static.action_mailer.main_email_address
 
   def as_to_contact( contact )
