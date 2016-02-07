@@ -1,6 +1,7 @@
 %p
   \------------------------------------------------------------------------<br>
-  『 #{Settings::Static.app_title} 』<br>
-  #{Settings::Static.action_mailer.main_email_address}<br>
+  『 #{Settings::Static.app_title} 』
+  URL: #{ link_to( Settings::Static.app_url, Settings::Static.app_url, target: :_blank ) }<br>
+  Mail: #{Settings::Static.action_mailer.main_email_address}<br>
   #{Settings::Static.credit.on_mail_for_users}
   \------------------------------------------------------------------------
