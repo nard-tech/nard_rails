@@ -7,6 +7,10 @@ module Nard::Rails::EmailHelper
     /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
   end
 
+  def psuedo_email_regexp 
+    /@example\.com\Z/
+  end
+
   # @!endgroup
 
 end
