@@ -8,9 +8,7 @@ class Nard::Mailer::ToAdministrator < Nard::Mailer::Master
 
     set_containers_as_to_contact
 
-    subject = "【#{Settings::Static.app_title}】お問い合わせがありました"
-
-    mail( subject: subject ) do | format |
+    mail( subject: @contact.decorate.subject ) do | format |
       format.html { render 'mailer/nard/rails/to_administrator/as_to_contact' }
     end
   end
