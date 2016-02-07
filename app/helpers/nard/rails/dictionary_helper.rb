@@ -7,10 +7,6 @@ module Nard::Rails::DictionaryHelper
     factory.to_s
   end
 
-  def genders
-    { male: 1, female: 2 }
-  end
-
   # @!endgroup
 
 end
