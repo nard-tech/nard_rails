@@ -4,7 +4,15 @@ class Nard::Mailer::ToSystemAdministrator < Nard::Mailer::Master
   default to: Settings::Static.action_mailer.system_admin_email_address
 
   def as_to_error( error_data )
-    @error_data = error_data
+    @error_inspection = error_data[:error_inspect]
+    @error_data_formatted = {
+      time: ApplicationController.helpers.l( Time.now ),
+      controller_name: error_data[:controller_name],
+      action_name: error_data[:action_name],
+      user: error_data[:user].inspect,
+      params: error_data[:params].inspect
+    }
+    @error_backtrace = error_data[:backtrace]
 
     subject = "【#{Settings::Static.app_title}】エラー発生"
 
