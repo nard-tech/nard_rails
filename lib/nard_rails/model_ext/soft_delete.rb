@@ -3,7 +3,7 @@ module Nard::Rails::ModelExt::SoftDelete
   extend ActiveSupport::Concern
 
   included do
-    scope :present, -> {
+    scope :active, -> {
       where( deleted_at: nil )
     }
 
