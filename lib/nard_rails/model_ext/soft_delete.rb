@@ -48,6 +48,8 @@ module Nard::Rails::ModelExt::SoftDelete
     !( deleted? )
   end
 
+  alias :active? :not_deleted?
+
   private
 
   def assign_deleted_date
