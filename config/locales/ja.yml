@@ -51,6 +51,7 @@ ja:
       #---- 独自に追加
       default_ja: "%Y年%m月%d日"
       separated_by_hyphen: "%Y-%m-%d"
+      day_name: '%a'
 
     month_names:
     -
@@ -86,6 +87,7 @@ ja:
       date_default: "%Y/%m/%d"
       date_long: "%Y年%m月%d日（%a）"
       date_short: "%m/%d"
+      date_without_year: "%m月%d日（%a）"
 
       normal: "%Y年%m月%d日（%a）%H:%M:%S"
       normal_customized: "%Y年%m月%d日（%a） %H:%M"
@@ -94,6 +96,8 @@ ja:
       only_time_short: "%H:%M"
       only_time_long: "%H時%M分%S秒 %z"
       only_time_normal: "%H:%M:%S"
+
+      day_name: '%a'
 
   datetime:
     distance_in_words:
