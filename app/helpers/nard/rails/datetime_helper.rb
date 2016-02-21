@@ -1,14 +1,12 @@
 module Nard::Rails::DatetimeHelper
 
-  def date_ja_normal( date, day_name: false )
-    str = "#{ date.year }年#{ date.month }月#{ date.day }日"
-    str += "（#{ l( date, format: :day_name ) }）" if day_name
-    str
-  end
-
-  def date_ja_without_year( date, day_name: false )
+  def date_ja( date, year: true, day_name: false, time: false )
     str = "#{ date.month }月#{ date.day }日"
+    str = "#{ date.year }年#{ str }" if year
     str += "（#{ l( date, format: :day_name ) }）" if day_name
+    if time and date.respond_to?(:hour) and date.respond_to?(:min) and date.respond_to?(:sec)
+      str += l( date, format: :only_time_normal )
+    end
     str
   end
 
