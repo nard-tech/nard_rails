@@ -92,10 +92,9 @@ ja:
       normal: "%Y年%m月%d日（%a）%H:%M:%S"
       normal_customized: "%Y年%m月%d日（%a） %H:%M"
 
-      only_time_default: "%H:%M:%S"
-      only_time_short: "%H:%M"
       only_time_long: "%H時%M分%S秒 %z"
       only_time_normal: "%H:%M:%S"
+      only_time_short: "%H:%M"
 
       day_name: '%a'
 
