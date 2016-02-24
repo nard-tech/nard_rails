@@ -52,14 +52,21 @@ module Nard::Rails::ModelExt::SoftDelete
 
   private
 
-  def assign_deleted_date
+  def assign_deleted_date( t = nil, &block )
     if deleted_at.blank?
-      assign_attributes(deleted_at: Time.now)
+      t ||= Time.now
+      assign_attributes(deleted_at: t )
+      if block_given?
+        yield(t)
+      end
     end
   end
 
-  def remove_deleted_date
+  def remove_deleted_date( &block )
     assign_attributes(deleted_at: nil)
+    if block_given?
+      yield
+    end
   end
 
 end
