@@ -6,8 +6,10 @@ module Nard::Rails::KaminariHelper
       _page_entries_info.gsub!( /s(?=の \d+ - \d+ 件を表示中)/ , "" )
 
       content_tag( :div, class: [ 'paginate-infos', "paginate-links--#{ position }" ] ) {
-        concat content_tag( :p, _page_entries_info )
-        concat paginate( items )
+        page_entries_info_html = content_tag( :p, _page_entries_info )
+        paginate_html = paginate( items )
+
+        page_entries_info_html + paginate_html
       }
     elsif position == :top
       content_tag( :p, "表示する情報はありません。" )

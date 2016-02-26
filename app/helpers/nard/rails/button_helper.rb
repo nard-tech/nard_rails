@@ -59,35 +59,42 @@ module Nard::Rails::ButtonHelper
     div_classes = [ :btn , 'link-btn' , "btn--#{ btn_class }" , "btn-#{ layout_type }" , :clr ]
 
     proc_of_content = Proc.new {
+      link = ''
+
       if path.present?
-        concat link_to( "" , path , method: method_of_link , data: data_attr_of_link )
+        link = link_to( "" , path , method: method_of_link , data: data_attr_of_link )
       elsif form.present?
         case btn_class.to_s
         when 'add'
           if children.present?
-            concat form.link_to_add( "" , children )
+            link = form.link_to_add( "" , children )
           end
         when 'remove'
-          concat form.link_to_remove( "" )
+          link = form.link_to_remove( "" )
         end
       end
 
-      concat( content_tag( :div , class: [ 'btn__contents' , :clr ] ) {
+      btn_contents = content_tag( :div , class: [ 'btn__contents' , :clr ] ) {
+        ary = []
+
         if icon.present?
-          concat( content_tag( :div , class: [ 'btn__icon-outer' , :btn__content ] ) {
+          ary << content_tag( :div , class: [ 'btn__icon-outer' , :btn__content ] ) {
             content_tag( :i , "" , class: [ :fa , "fa-#{ icon_size }x" , "fa-#{ icon.to_s.dasherize }" , :btn__icon ] )
-          })
+          }
         end
 
         if title.present?
           if title.instance_of?( String ) or title.instance_of?( Symbol )
-            concat( content_tag( :div , title , class: [ :btn__title , :btn__content ] ) )
+            ary << content_tag( :div , title , class: [ :btn__title , :btn__content ] )
           else title.instance_of?( Proc )
-            concat( title.call )
+            ary << title.call
           end
         end
-      })
 
+        ary.join.html_safe
+      }
+
+      ( link + btn_contents ).html_safe
     }
 
     case tag_type.to_s

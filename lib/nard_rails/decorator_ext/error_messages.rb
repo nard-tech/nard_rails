@@ -9,9 +9,8 @@ module Nard::Rails::DecoratorExt::ErrorMessages
       # title = "#{object.errors.count}件のエラーがあります。"
       # title = "#{pluralize(object.errors.count, "error")} prohibited this pack_area from being saved:"
 
-      h.concat h.render(partial: 'nard/rails/shared/errors', locals: {object: object, title: title, error_messages: error_messages})
+      h.render(partial: 'nard/rails/shared/errors', locals: {object: object, title: title, error_messages: error_messages})
     end
-    nil
   end
 
   # @!endgroup

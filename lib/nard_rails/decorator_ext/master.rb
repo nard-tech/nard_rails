@@ -37,9 +37,11 @@ module Nard::Rails::DecoratorExt::Master
   # @!group Private instance methods - Rendering
 
   def render_main_areas_on_show_page(_flash, options)
-    render_table_on_show_page(options)
-    render_buttons_on_show_page(_flash, options)
-    nil
+    ary = []
+    ary << render_table_on_show_page(options)
+    ary << render_buttons_on_show_page(_flash, options)
+
+    ary.join.html_safe
   end
 
   # @!endgroup

@@ -11,8 +11,10 @@ module Nard::Rails::FormHelper
     info_grid_classes = grid.map { |k,v| "col-#{k}-#{ 12 - v }" }
 
     content_tag( :div, class: [ :field, :row ] ) {
-      concat content_tag( :div, label_name, class: [ 'showing-label', label_grid_classes ].flatten )
-      concat content_tag( :div, info, class: info_grid_classes )
+      showing_label = content_tag( :div, label_name, class: [ 'showing-label', label_grid_classes ].flatten )
+      info_html = content_tag( :div, info, class: info_grid_classes )
+
+      showing_label + info_html
     }
   end
 

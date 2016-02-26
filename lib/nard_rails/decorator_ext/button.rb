@@ -31,8 +31,12 @@ module Nard::Rails::DecoratorExt::Button
     name += 'へ戻る' if back
 
     h.content_tag( :div, class: [:btns, 'btns--on-edit-page', :clr ] ) {
-      h.concat( h.basic_button(:div, name, btn_class: 'back-to-info', path: object, icon: Settings::Static.icons.back ) )
-      h.concat( self.class.render_btn_for_list_page )
+      btns = []
+
+      btns << h.basic_button(:div, name, btn_class: 'back-to-info', path: object, icon: Settings::Static.icons.back )
+      btns << self.class.render_btn_for_list_page
+
+      btns.join.html_safe
     }
   end
 
@@ -59,8 +63,7 @@ module Nard::Rails::DecoratorExt::Button
     btn_for_edit_page = options[:btn_for_edit_page]
     btn_for_edit_page ||= true
 
-    h.concat h.render(partial: 'shared/show/buttons', locals:{d: self, _flash: _flash, other_btns: other_btns, btn_for_edit_page: btn_for_edit_page})
-    nil
+    h.render(partial: 'shared/show/buttons', locals:{d: self, _flash: _flash, other_btns: other_btns, btn_for_edit_page: btn_for_edit_page})
   end
 
   def render_btn_for_edit_page(name: nil, path: nil, after_created: false)
@@ -78,21 +81,26 @@ module Nard::Rails::DecoratorExt::Button
   def render_btns_in_list(rowspan: nil, btn_for_delete: true, on_table: true, other_btns: nil, name: nil, outer: { class: 'btns-outer' } )
     options = {}
     name ||= {}
+    other_btns = [other_btns].flatten if other_btns.present?
 
     proc_for_div = Proc.new {
       h.content_tag(:div, class: [:btns, :clr]) {
-        h.concat( render_btn_for_show_page(name: name[:show]) )
-        h.concat( render_btn_for_edit_page(name: name[:edit]) )
+        btns_ary = []
+
+        btns_ary << render_btn_for_show_page( name: name[:show] )
+        btns_ary << render_btn_for_edit_page( name: name[:edit] )
 
         if other_btns.present?
-          [other_btns].flatten.each do | other_btn |
-            h.concat(other_btn)
+          other_btns.each do | other_btn |
+            btns_ary << other_btn
           end
         end
 
         if btn_for_delete
-          h.concat( render_btn_for_delete(name: name[:delete]) )
+          btns_ary << render_btn_for_delete( name: name[:delete] )
         end
+
+        btns_ary.join.html_safe
       }
     }
 
