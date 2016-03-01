@@ -16,6 +16,10 @@ class Nard::Rails::AppController < ActionController::Base
 
   include Nard::Rails::ControllerExt::Session
 
+  # @!group Request
+
+  include Nard::Rails::ControllerExt::Request
+
   # @!endgroup
 
 end
