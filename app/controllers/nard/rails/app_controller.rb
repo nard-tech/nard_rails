@@ -20,6 +20,10 @@ class Nard::Rails::AppController < ActionController::Base
 
   include Nard::Rails::ControllerExt::Request
 
+  # @!group Ajax
+
+  include Nard::Rails::ControllerExt::Ajax
+
   # @!endgroup
 
 end
