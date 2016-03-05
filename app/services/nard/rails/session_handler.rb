@@ -15,17 +15,13 @@ class Nard::Rails::SessionHandler
 
   def fetch(k)
     v = get(k)
-    unless v.nil?
-      delete!(k)
-    end
+    delete!(k) unless v.nil?
     v
   end
 
   def delete!( *args )
     [ args ].flatten.each do | key |
-      if get( key ).present?
-        set( key , nil )
-      end
+      set( key, nil ) if get( key ).present?
     end
   end
 
@@ -43,11 +39,9 @@ class Nard::Rails::SessionHandler
   end
 
   def delegate_attributes( of:, to: )
-    record , session_key = to , of
+    record, session_key = to, of
     v = fetch( session_key )
-    if v.present?
-      record.assign_attributes(v)
-    end
+    record.assign_attributes(v) if v.present?
   end
 
   def keys
