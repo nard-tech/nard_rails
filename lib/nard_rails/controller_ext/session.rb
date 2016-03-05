@@ -6,7 +6,7 @@ module Nard::Rails::ControllerExt::Session
   private
 
   def session_handler
-    Nard::Rails::SessionHandler.new(session)
+    @session_handler ||= Nard::Rails::SessionHandler.new(session)
   end
 
   # @!endgroup
