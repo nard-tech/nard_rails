@@ -12,23 +12,23 @@ class Nard::Rails::FlashHandler < Nard::Rails::StatusHandler
     #--------
 
     if key.present?
-      set( key, var )
-      return
+      return set( key, var )
     end
 
     #--------
 
     default_keys = [ options.delete(:default) ].flatten
-    completed = false
+    raise unless default_keys.present?
+    key = nil
 
-    default_keys.each do | key |
-      if get( key ).present?
-        set( key, "#{ get( key ) }#{ var }" )
-        completed = true
+    default_keys.each do | k |
+      if has_value_for?( k )
+        set( k, "#{ get( k ) }#{ var }" )
+        key = k
         break
       end
     end
-    return if completed
+    return get(key) if key
 
     #--------
 

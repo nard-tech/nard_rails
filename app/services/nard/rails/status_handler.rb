@@ -14,14 +14,26 @@ class Nard::Rails::StatusHandler
 
   def fetch(k)
     v = get(k)
-    delete!(k) unless v.nil?
+    delete!(k) if has_value_for?(k)
     v
   end
 
+  alias :delete :fetch
+
+  def init( k, v )
+    has_value_for?(k) ? get(k) : set( k, v )
+  end
+
   def delete!( *args )
+    h_deleted = {}
     [ args ].flatten.each do | key |
-      set( key, nil ) if get( key ).present?
+      if has_value_for?( key )
+        h_deleted[ key ] = get(key)
+        set( key, nil )
+      end
     end
+
+    ( h_deleted.present? ? h_deleted : nil )
   end
 
   def reset_all!
@@ -29,13 +41,21 @@ class Nard::Rails::StatusHandler
   end
 
   def keys
-    obj.keys
+    obj.keys.map( &:to_s )
   end
 
   private
 
   def method_missing( method_name , *args )
     obj.send( method_name , *args )
+  end
+
+  def has_key?(k)
+    keys.include?( k.to_s )
+  end
+
+  def has_value_for?(k)
+    has_key?(k) and !( get(k).nil? )
   end
 
 end
