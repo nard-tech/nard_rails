@@ -1,4 +1,4 @@
-# セッション情報を処理するクラス
+# Session の処理を行うクラス
 class Nard::Rails::SessionHandler
 
   def initialize( session )
