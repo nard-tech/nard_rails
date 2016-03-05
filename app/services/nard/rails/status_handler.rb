@@ -4,9 +4,13 @@ class Nard::Rails::StatusHandler
     obj[ k.to_s ]
   end
 
+  alias :[] :get
+
   def set( k , v )
     obj[ k.to_s ] = v
   end
+
+  alias :[]= :set
 
   def fetch(k)
     v = get(k)
