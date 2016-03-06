@@ -16,6 +16,8 @@ module Nard::Rails::ControllerExt::Request
     h = referrer_recognized.dup
     h[ :controller ] = "/#{ h[ :controller ] }"
     url_for(h)
+  rescue ActionController::RoutingError => e
+    nil
   end
 
   alias :referer :referrer
