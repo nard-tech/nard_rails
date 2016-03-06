@@ -8,7 +8,7 @@ class Nard::Rails::TweetService
   def initialize( posted_info )
     @posted_info = posted_info
 
-    inspect_account_api_configs
+    inspect_account_api_configs unless Rails.env.production?
     _account_api_configs = account_api_configs
 
     @client = Twitter::REST::Client.new do |config|
@@ -30,15 +30,17 @@ class Nard::Rails::TweetService
   end
 
   def exec_tweet!
-    puts 'Nard::Rails::TweetService#exec_tweet!'
+    unless Rails.env.production?
+      puts 'Nard::Rails::TweetService#exec_tweet!'
 
-    puts "id: #{ posted_info_id }"
-    puts "length: #{ tweet_length }"
-    puts @client.inspect
+      puts "id: #{ posted_info_id }"
+      puts "length: #{ tweet_length }"
+      puts @client.inspect
+    end
 
     raise LengthError.new( @posted_info ) unless valid_tweet_length?
 
-    puts tweet_formatted
+    puts tweet_formatted unless Rails.env.production?
 
     begin
       if posted_info_has_media_file?
