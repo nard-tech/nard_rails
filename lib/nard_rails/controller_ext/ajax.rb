@@ -15,7 +15,7 @@ module Nard::Rails::ControllerExt::Ajax
   end
 
   def redirect_path_unless_xhr
-    root_path
+    main_app.root_path
   end
 
 end
