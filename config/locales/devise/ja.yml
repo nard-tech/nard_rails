@@ -204,17 +204,20 @@ ja:
       confirmations:
         new:
           header: '確認メールが届いていない方は…' # Resend confirmation instructions
+          title: 確認メールの再送信
           messages:
             precise: '以下にメールアドレスをご記入の上、「再送信」ボタンを押してください。確認メールを改めてお送りします。'
           submit: 再送信 # Resend confirmation instructions
       registrations:
         new:
           header: 新規登録 # Sign up
+          title: 新規登録
           submit: 登録
           messages:
             type_password_again: '確認のため、上と同じパスワードをもう一度入力してください。'
         edit:
           header: 登録情報の変更 # Edit #{resource_name.to_s.humanize}
+          title: 登録情報の変更
           messages:
             leave_blank: 'パスワードを変更しない場合、以下の2項目は空白のままにしてください。'
             type_new_password_again: 'パスワードを変更する場合は、確認のため、上と同じパスワードをもう一度入力してください。'
@@ -231,23 +234,27 @@ ja:
       sessions:
         new:
           header: ログイン # Log in
+          title: ログイン
           labels:
             remember_me: パスワードを記憶する # Remember Me
           submit: ログインする
       passwords:
         new:
           header: 'パスワードをお忘れの方は…' # Forgot your password?
+          title: パスワードの再発行
           messages:
             precise: '以下にメールアドレスをご記入の上、「送信」ボタンを押してください。パスワード再設定のご案内をお送りします。'
           submit: 送信
         edit:
           header: パスワードの変更 # Change your password
+          title: パスワードの変更
           messages:
             precise: 以下に新しいパスワードを入力し、「変更」ボタンを押してください。
           submit: 変更
       unlocks:
         new:
           header: 'アカウント凍結解除のメールが届いていない方は…' # Resend unlock instructions
+          title: 'アカウント凍結解除メールの再送信'
           messages:
             precise: '以下にメールアドレスをご記入の上、「送信」ボタンを押してください。アカウント凍結解除のご案内のメールを改めてお送りします。'
           submit: 送信
