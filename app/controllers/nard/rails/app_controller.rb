@@ -12,6 +12,10 @@ class Nard::Rails::AppController < ActionController::Base
     include Nard::Rails::ControllerExt::ErrorHandlers
   end
 
+  # @!group Authentication
+
+  include Nard::Rails::ControllerExt::CanCan
+
   # @!group Session
 
   include Nard::Rails::ControllerExt::Session
