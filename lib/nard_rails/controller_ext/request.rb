@@ -22,4 +22,10 @@ module Nard::Rails::ControllerExt::Request
   alias :referer_recognized :referrer_recognized
   alias :referer_url :referrer_url
 
+  private
+
+  def method_missing( method_name, *args )
+    ( /referer/ === method_name.to_s ) ? send( method_name.to_s.gsub( /referer/, 'referrer' ), *args ) : super
+  end
+
 end
