@@ -10,4 +10,8 @@ module Nard::Rails::DatetimeHelper
     str
   end
 
+  def date_short( obj )
+    obj.strftime('%m/%d')
+  end
+
 end
