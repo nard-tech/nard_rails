@@ -2,8 +2,12 @@ module Nard::Rails::ControllerExt::Ajax
 
   private
 
+  def ajax_request?
+    request.xhr?
+  end
+
   def redirect_unless_xhr
-    unless request.xhr?
+    unless ajax_request?
       set_flash_alert_unless_xhr
       redirect_to( redirect_path_unless_xhr )
       return

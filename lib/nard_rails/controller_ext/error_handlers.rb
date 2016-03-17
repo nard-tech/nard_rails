@@ -21,7 +21,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
     @exception = e
     logger.error "Rendering 403 with exception: #{@exception.message}" if @exception
 
-    if request.xhr?
+    if ajax_request?
       render json: { error: '403 error' }, status: :forbidden , layout: nil
     else
       render template: 'errors/forbidden', status: :forbidden , content_type: 'text/html'
@@ -32,7 +32,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
     @exception = e
     logger.error "Rendering 404 with exception: #{@exception.message}" if @exception
 
-    if request.xhr?
+    if ajax_request?
       render json: { error: '404 error' }, status: :not_found , layout: nil
     else
       render template: 'errors/not_found', status: :not_found , content_type: 'text/html'
@@ -62,7 +62,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
       logger.error "Rendering 500 with exception: SMTPFatalError"
     end
 
-    if request.xhr?
+    if ajax_request?
       render json: { error: '500 error' }, status: :internal_server_error , layout: nil
     else
       render template: 'errors/internal_server_error', status: :internal_server_error , content_type: 'text/html'
