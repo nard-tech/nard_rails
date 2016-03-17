@@ -32,6 +32,10 @@ class Nard::Rails::AppController < ActionController::Base
 
   include Nard::Rails::ControllerExt::Ajax
 
+  # @!group RailsAdmin
+
+  include Nard::Rails::ControllerExt::Admin
+
   # @!endgroup
 
 end
