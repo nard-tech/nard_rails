@@ -89,7 +89,7 @@ ja:
 
       #---- [Pattern 1]
 
-      failure: "%{kind} アカウントによる認証に失敗しました。（理由：%{reason}）"
+      failure: "%{kind} アカウントによる認証に失敗しました。（原因：%{reason}）"
       success: "%{kind} アカウントによる認証に成功しました。"
 
       #---- [Pattern 2]
