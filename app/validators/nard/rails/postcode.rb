@@ -1,2 +1,2 @@
-module Postcode
+module Nard::Rails::Postcode
 end
