@@ -15,6 +15,7 @@ class Nard::Rails::AppController < ActionController::Base
   # @!group Authentication
 
   include Nard::Rails::ControllerExt::CanCan
+  include Nard::Rails::ControllerExt::Ability
 
   # @!group Session
 

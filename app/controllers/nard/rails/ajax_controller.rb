@@ -5,7 +5,6 @@ class Nard::Rails::AjaxController < Nard::Rails::AppController
 
   protect_from_forgery with: :null_session
 
-  include Nard::Rails::ControllerExt::Ability
   include Nard::Rails::ControllerExt::Ajax::Authentication
 
 end
