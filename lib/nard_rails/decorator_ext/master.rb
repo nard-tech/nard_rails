@@ -38,6 +38,7 @@ module Nard::Rails::DecoratorExt::Master
 
   def render_main_areas_on_show_page(_flash, options)
     ary = []
+
     ary << render_table_on_show_page(options)
     ary << render_buttons_on_show_page(_flash, options)
 
