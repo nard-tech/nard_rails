@@ -13,11 +13,18 @@ module Nard::Rails::ModelExt::ColumnType
     #   => "tinyint(1)"
     #    Reservation.column_type(of: :is_locked)
     #   => "tinyint(1)"
+    # @note MySQL のみに対応
     def column_type(column_name=nil, of: nil)
-      raise if [column_name, of].all?(&:blank?)
+      raise ArgumentError if [column_name, of].all?(&:blank?)
       column_name ||= of
       column_name = column_name.to_s
-      columns_hash[column_name].sql_type.to_s
+      column_info = columns_hash[column_name]
+
+      if column_info.instance_of?( ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter::Column )
+        column_info.sql_type.to_s
+      else
+        nil
+      end
     end
 
   end
