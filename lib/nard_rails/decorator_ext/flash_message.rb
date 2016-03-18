@@ -37,9 +37,11 @@ module Nard::Rails::DecoratorExt::FlashMessage
 
       if msg_base.present? and classe_names.present?
         msg = "#{ model_name_to_display }「#{ main_value }」#{msg_base}"
-        h.content_tag(:p, msg, class: classe_names)
+        return h.content_tag(:p, msg, class: classe_names)
       end
     end
+
+    return ''
   end
 
   # @!group Private instance methods - Messages
