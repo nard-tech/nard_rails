@@ -1,5 +1,11 @@
 module Nard::Rails::ControllerExt::Ajax
 
+  extend ActiveSupport::Concern
+
+  included do
+    rescue_from Nard::Rails::Controller::NotAjaxError, with: :rescue_unless_xhr
+  end
+
   private
 
   def ajax_request?
@@ -7,11 +13,13 @@ module Nard::Rails::ControllerExt::Ajax
   end
 
   def redirect_unless_xhr
-    unless ajax_request?
-      set_flash_alert_unless_xhr
-      redirect_to( redirect_path_unless_xhr )
-      return
-    end
+    raise Nard::Rails::Controller::NotAjaxError unless ajax_request?
+  end
+
+  def rescue_unless_xhr
+    set_flash_alert_unless_xhr
+    redirect_to( redirect_path_unless_xhr )
+    return
   end
 
   def set_flash_alert_unless_xhr
