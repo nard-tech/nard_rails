@@ -8,9 +8,7 @@ module Nard::Rails::DecoratorExt::FlashMessage
     # @!group Rendering
 
     def render_msg_on_index_page(_flash)
-      if _flash['status'] == 'deleted'
-        h.content_tag(:p, _flash['msg'], class: [:msg, 'msg--remark'])
-      end
+      _flash['status'] == 'deleted' ? h.content_tag(:p, _flash['msg'], class: [:msg, 'msg--remark']) : ''
     end
 
     # @!endgroup
