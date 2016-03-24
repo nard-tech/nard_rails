@@ -44,7 +44,7 @@ module Nard::Rails::ButtonHelper
 
   # @!endgroup
 
-  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: 1, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil )
+  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil )
     raise ArgumentError unless [ 'div', 'submit', 'submit_button' ].include?(tag_type.to_s)
     raise ArgumentError if title.present? and !( title.kind_of?( String ) or title.instance_of?( Symbol ) )
     raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
@@ -54,21 +54,15 @@ module Nard::Rails::ButtonHelper
 
     link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link ) : '' )
 
-    btn_contents = content_tag( :div, class: [ 'btn__contents', :clr ] ) {
-      ary = []
+    if icon.present?
+      icon_classes = [ icon.to_s.dasherize ]
+      icon_classes << "#{ icon_size }x" if icon_size.present?
+      icon_and_text_html = fa_icon_nd( icon_classes, text: title )
+    else
+      icon_and_text_html = title
+    end
 
-      if icon.present?
-        ary << content_tag( :div, class: [ 'btn__icon-outer', :btn__content ] ) {
-          content_tag( :i, '', class: [ :fa, "fa-#{ icon_size }x", "fa-#{ icon.to_s.dasherize }", :btn__icon ] )
-        }
-      end
-
-      ary << content_tag( :div , title , class: [ :btn__title , :btn__content ] )
-
-      ary.join.html_safe
-    }
-
-    html = ( link_html + btn_contents ).html_safe
+    html = ( link_html + icon_and_text_html ).html_safe
     options = { class: div_classes, id: btn_id }
     tag_name = ( tag_type.to_s == 'div' ? :div : :button )
 
