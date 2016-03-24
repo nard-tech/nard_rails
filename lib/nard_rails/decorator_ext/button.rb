@@ -8,14 +8,11 @@ module Nard::Rails::DecoratorExt::Button
     # @!group Class methods - Rendering
 
     def render_btn_for_list_page(name: nil, back: true, has_icon: true, icon: nil)
+      raise ArgumentError if icon.present? and !( has_icon )
+
       name ||= "#{ model_name_to_display }一覧"
       name += 'へ戻る' if back
-
-      if has_icon
-        icon ||= Settings::Static.icons.list
-      else
-        raise if icon.present?
-      end
+      icon ||= Settings::Static.icons.list if has_icon
 
       h.basic_button(:div, name, btn_class: 'back-to-list', path: h.url_for(controller: self.object_class.name.to_s.tableize, action: :index), icon: icon )
     end

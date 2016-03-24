@@ -17,7 +17,7 @@ module Nard::Rails::ButtonHelper
   end
 
   def submit_button( btn_id: nil , name: '登録', has_icon: true, icon: nil )
-    raise if icon.present? and !( has_icon )
+    raise ArgumentError if icon.present? and !( has_icon )
 
     icon ||= Settings::Static.icons.submit if has_icon
 
@@ -25,7 +25,7 @@ module Nard::Rails::ButtonHelper
   end
 
   def search_button( btn_id: nil, name: '検索', has_icon: true, icon: nil )
-    raise if icon.present? and !( has_icon )
+    raise ArgumentError if icon.present? and !( has_icon )
 
     icon ||= Settings::Static.icons.search if has_icon
 
@@ -33,7 +33,7 @@ module Nard::Rails::ButtonHelper
   end
 
   def shop_button( shop = nil )
-    raise unless shop.present?
+    raise ArgumentError unless shop.present?
     basic_button( :div, shop.name, btn_class: :shop, btn_id: 'js-shop__btn', icon: Settings::Static.icons.shop )
   end
 
@@ -48,8 +48,8 @@ module Nard::Rails::ButtonHelper
   # @!endgroup
 
   def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: 1, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil )
-    raise unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
-    raise unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
+    raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
+    raise ArgumentError unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
 
     div_classes = [ :btn, 'link-btn', "btn--#{ btn_class }", "btn-#{ layout_type }", :clr ]
 
