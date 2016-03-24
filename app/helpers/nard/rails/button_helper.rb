@@ -38,66 +38,42 @@ module Nard::Rails::ButtonHelper
   end
 
   def action_alert_button
-    proc = Proc.new {
-      content_tag( :div, '', class: ['n-alerts', :btn__content, 'n-alerts--default'], id: 'js-n-alerts' )
-    }
-
-    basic_button( :div, proc, btn_class: 'action-alert', btn_id: 'js-action-alert__btn', icon: Settings::Static.icons.alert )
+    title = content_tag( :div, '', class: ['n-alerts', :btn__content, 'n-alerts--default'], id: 'js-n-alerts' )
+    basic_button( :div, title, btn_class: 'action-alert', btn_id: 'js-action-alert__btn', icon: Settings::Static.icons.alert )
   end
 
   # @!endgroup
 
   def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: 1, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil )
+    raise ArgumentError unless [ 'div', 'submit', 'submit_button' ].include?(tag_type.to_s)
+    raise ArgumentError if title.present? and !( title.kind_of?( String ) or title.instance_of?( Symbol ) )
     raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
     raise ArgumentError unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
 
     div_classes = [ :btn, 'link-btn', "btn--#{ btn_class }", "btn-#{ layout_type }", :clr ]
 
-    proc_of_content = Proc.new {
-      link = ''
+    link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link ) : '' )
 
-      if path.present?
-        link = link_to( '', path, method: method_of_link, data: data_attr_of_link )
-      elsif form.present?
-        case btn_class.to_s
-        when 'add'
-          if children.present?
-            link = form.link_to_add( '', children )
-          end
-        when 'remove'
-          link = form.link_to_remove( '' )
-        end
+    btn_contents = content_tag( :div, class: [ 'btn__contents', :clr ] ) {
+      ary = []
+
+      if icon.present?
+        ary << content_tag( :div, class: [ 'btn__icon-outer', :btn__content ] ) {
+          content_tag( :i, '', class: [ :fa, "fa-#{ icon_size }x", "fa-#{ icon.to_s.dasherize }", :btn__icon ] )
+        }
       end
 
-      btn_contents = content_tag( :div, class: [ 'btn__contents', :clr ] ) {
-        ary = []
+      ary << content_tag( :div , title , class: [ :btn__title , :btn__content ] )
 
-        if icon.present?
-          ary << content_tag( :div, class: [ 'btn__icon-outer', :btn__content ] ) {
-            content_tag( :i, '', class: [ :fa, "fa-#{ icon_size }x", "fa-#{ icon.to_s.dasherize }", :btn__icon ] )
-          }
-        end
-
-        if title.present?
-          if title.instance_of?( String ) or title.instance_of?( Symbol )
-            ary << content_tag( :div , title , class: [ :btn__title , :btn__content ] )
-          else title.instance_of?( Proc )
-            ary << title.call
-          end
-        end
-
-        ary.join.html_safe
-      }
-
-      ( link + btn_contents ).html_safe
+      ary.join.html_safe
     }
 
-    case tag_type.to_s
-    when 'div'
-      content_tag( :div, class: div_classes, id: btn_id, &proc_of_content )
-    when 'submit', 'submit_button'
-      content_tag( :button, class: div_classes, type: :submit, id: btn_id, &proc_of_content )
-    end
+    html = ( link_html + btn_contents ).html_safe
+    options = { class: div_classes, id: btn_id }
+    tag_name = ( tag_type.to_s == 'div' ? :div : :button )
+
+    options[:type] = 'submit' if tag_name == :button
+    content_tag( tag_name, html, options )
   end
 
   # @!endgroup
