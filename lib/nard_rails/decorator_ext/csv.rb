@@ -12,7 +12,7 @@ module Nard::Rails::DecoratorExt::Csv
       path = h.url_for( controller: controller, action: :csv, q: h.request[:q] )
 
       h.content_tag(:div, class: 'link-to-csv__outer') {
-        h.basic_button(:div, 'CSV', btn_class: :csv, path: path, icon: :table )
+        h.basic_button(:div, 'CSV', btn_class: :csv, path: path, icon: Settings::Static.icons.csv )
       }
     end
 
