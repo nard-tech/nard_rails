@@ -6,7 +6,7 @@ module Nard::Rails::ControllerExt::CanCan
 
     rescue_from CanCan::AccessDenied do |exception|
       session_handler.init( :after_sign_in_path, request.url )
-      binding.pry # @todo Delete
+      binding.pry unless Rails.env.production? # @todo Delete
       redirect_to( main_app.root_path, alert: "#{ exception.class } - #{ exception.message }" )
     end
 
