@@ -36,7 +36,7 @@ module Nard::Rails::ControllerExt::Ajax
 
   def rescue_unless_xhr
     set_flash_alert_unless_xhr
-    redirect_to( redirect_path_unless_xhr )
+    redirect_to( redirect_path_unless_xhr( params[:action] ), format: :html, status: :not_acceptable )
     return
   end
 
@@ -44,7 +44,7 @@ module Nard::Rails::ControllerExt::Ajax
     flash[ :alert ] = '不正なアクセスを検出しました。'
   end
 
-  def redirect_path_unless_xhr
+  def redirect_path_unless_xhr( action = nil )
     main_app.root_path
   end
 
