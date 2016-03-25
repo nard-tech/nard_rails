@@ -19,6 +19,8 @@ module Nard::Rails::ControllerExt::Ajax
     raise Nard::Rails::Controller::AjaxError if ajax_request?
   end
 
+  alias :redirect_if_xhr :reject_if_xhr
+
   def rescue_if_xhr
     render( json: {}, status: :not_acceptable )
     return
@@ -26,9 +28,11 @@ module Nard::Rails::ControllerExt::Ajax
 
   # @!group Unless xhr - Ajax のみを受け付ける場合
 
-  def redirect_unless_xhr
+  def reject_unless_xhr
     raise Nard::Rails::Controller::NotAjaxError unless ajax_request?
   end
+
+  alias :redirect_unless_xhr :reject_unless_xhr
 
   def rescue_unless_xhr
     set_flash_alert_unless_xhr
