@@ -65,7 +65,7 @@ module Nard::Rails::DecoratorExt::Button
 
   def render_btn_for_edit_page(name: nil, path: nil, after_created: false)
     name ||= ( after_created ? "この#{ model_name_to_display }をさらに編集" : '編集' )
-    path ||= h.url_for(controller: object.class.to_s.tableize, action: :edit, id: object.id)
+    path ||= h.url_for(controller: "/#{ object.class.to_s.tableize }", action: :edit, id: object.id)
     h.basic_button(:div, name, btn_class: :edit, path: path, icon: Settings::Static.icons.edit )
   end
 
