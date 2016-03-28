@@ -14,7 +14,7 @@ module Nard::Rails::DecoratorExt::Button
       name += 'へ戻る' if back
       icon ||= Settings::Static.icons.list if has_icon
 
-      h.basic_button(:div, name, btn_class: 'back-to-list', path: h.url_for(controller: self.object_class.name.to_s.tableize, action: :index), icon: icon )
+      h.basic_button(:div, name, btn_class: 'back-to-list', path: h.url_for(controller: "/#{ self.object_class.name.to_s.tableize }", action: :index), icon: icon )
     end
 
     # @!endgroup
