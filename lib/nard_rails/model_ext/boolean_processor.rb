@@ -12,14 +12,17 @@
 #   以上の理由から、このモジュールを定義した。
 # @note
 #   メソッドは included 節内で動的に定義する。
+# @note 現在は MySQL のみで動作確認済み
 module Nard::Rails::ModelExt::BooleanProcessor
 
   extend ActiveSupport::Concern
 
   included do
 
+    boolean_field_types = ['tinyint(1)'] # MySQL の場合
+
     column_names.each do |column|
-      if /^is_/ === column.to_s and ['tinyint(1)'].include?(column_type(of: column).to_s)
+      if /^is_/ === column.to_s and boolean_field_types.include?(column_type(of: column).to_s)
         eval <<-DEF
           def #{column.to_s.gsub(/^is_/, '')}?
             if #{column}
