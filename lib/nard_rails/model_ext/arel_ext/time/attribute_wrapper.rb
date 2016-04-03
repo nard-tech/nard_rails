@@ -4,14 +4,21 @@ class Nard::Rails::ModelExt::ArelExt::Time::AttributeWrapper
     @arel_attribute = arel_attribute
   end
 
-  def before( time, eq: false )
-    raise ArgumentError unless eq == true or eq == false
-    eq ? @arel_attribute.lteq( time ) : @arel_attribute.lt( time ) # <= /<
+  def before( time, options = {} )
+    eq_setting( options ) ? @arel_attribute.lteq( time ) : @arel_attribute.lt( time ) # <= /<
   end
 
-  def after( time, eq: false )
-    raise ArgumentError unless eq == true or eq == false
-    eq ? @arel_attribute.gteq( time ) : @arel_attribute.gt( time ) # >= />
+  def after( time, options = {} )
+    eq_setting( options ) ? @arel_attribute.gteq( time ) : @arel_attribute.gt( time ) # >= />
+  end
+
+  private
+
+  def eq_setting( options )
+    return !!( options ) if options == true or options == false or options == nil or options == :eq
+    options.with_indifferent_access[:eq]
+  rescue
+    raise ArgumentError, 'Please set boolean, nil, symbol \':eq\' or hash with key \'eq\' (string or symbol)'
   end
 
 end
