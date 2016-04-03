@@ -6,7 +6,7 @@ class Nard::Rails::CellDecorationService::Html::List::InHeaderRow < Nard::Rails:
   def label
     str = super()
     return nil unless str.present?
-    ::ApplicationController.helpers.raw(str.to_s.split(/ /).join("<br />"))
+    str.to_s.split(/ /).join( '<br />' ).html_safe
   end
 
 end
