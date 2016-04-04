@@ -9,6 +9,11 @@ class Nard::Rails::ParamsService
   end
 
   def get
+    unless Rails.env.production?
+      puts "#{ self.class.name }\#get"
+      puts @h.to_s
+    end
+
     @h
   end
 
