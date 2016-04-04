@@ -22,7 +22,8 @@ class Nard::Rails::DictionaryService < Nard::Rails::DictionaryMetaService
     elsif get_decorator_attribute_name?
       h.t( "activerecord.decorators.#{ @model.to_s.underscore }.#{ @ary[2] }.#{ @ary[3] }")
     elsif get_other_option_name?
-      h.t( "activerecord.#{ @ary[1].pluralize }.#{ @model.to_s.underscore }.#{ @ary[2] }")
+      option_name = ( [ 'collection', 'search_form' ].include?( @ary[1] ) ? @ary[1] : @ary[1].pluralize )
+      h.t( "activerecord.#{ option_name }.#{ @model.to_s.underscore }.#{ @ary[2] }")
     else
       raise Nard::Rails::DictionaryService::InvalidReferenceError
     end
