@@ -28,7 +28,7 @@ class Nard::Rails::Number::DigitsValidator < ActiveModel::EachValidator
 
     end
 
-  rescue Nard::Rails::Number::Digit::CommonError => e
+  rescue Nard::Rails::Number::Digit::StandardError => e
     record.errors.add( e.field, e.message )
   end
 
