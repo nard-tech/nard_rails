@@ -16,7 +16,7 @@ class Nard::Mailer::ToAdministrator < Nard::Mailer::Master
   private
 
   def set_containers_as_to_contact
-    raise 'Please over-ride this method in sub-classes.'
+    raise NotImplementedError
   end
 
 end

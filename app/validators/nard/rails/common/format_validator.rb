@@ -24,11 +24,11 @@ class Nard::Rails::Common::FormatValidator < ActiveModel::EachValidator
   end
 
   def valid_regexp
-    raise 'Over-ride in sub-classes.'
+    raise NotImplementedError
   end
 
   def error_class
-    raise 'Over-ride in sub-classes.'
+    raise NotImplementedError
   end
 
 end
