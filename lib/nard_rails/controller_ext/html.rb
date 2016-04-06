@@ -44,16 +44,22 @@ module Nard::Rails::ControllerExt::Html
 
   alias :redirect_unless_html :reject_unless_html
 
-  # @note Html 以外を受け付けない場合、Json ならば Json で、Json 以外は Html でエラーを返す。
+  # @note Html 以外を受け付けない場合、Html でエラーを返す。
+  # @note 「Json ならば Json でエラーを返す」というような場合は、以下の例のようにメソッドを上書きする。
+  # @example
+  #   def rescue_unless_html
+  #     if request.format == :json
+  #       render( json: {}, status: :unsupported_media_type )
+  #       return
+  #     else
+  #       super()
+  #     end
+  #   end
+  #
   def rescue_unless_html
-    if request.format == :json
-      render( json: {}, status: :unsupported_media_type )
-      return
-    else
-      set_flash_alert_unless_html
-      redirect_to( redirect_path_unless_html, format: :html, status: :unsupported_media_type )
-      return
-    end
+    set_flash_alert_unless_html
+    redirect_to( redirect_path_unless_html, format: :html, status: :unsupported_media_type )
+    return
   end
 
   def set_flash_alert_unless_html
