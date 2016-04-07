@@ -1,7 +1,7 @@
 class Nard::Rails::ModelExt::ArelExt::Time::AttributeWrapper
 
-  def initialize( arel_attribute )
-    @arel_attribute = arel_attribute
+  def initialize( _attr )
+    @arel_attribute = _attr
   end
 
   def before( time, options = {} )
