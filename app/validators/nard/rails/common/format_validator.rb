@@ -1,3 +1,4 @@
+# フォーマットを確認するための基底クラス
 class Nard::Rails::Common::FormatValidator < ActiveModel::EachValidator
 
   def validate_each( record, attribute, value )

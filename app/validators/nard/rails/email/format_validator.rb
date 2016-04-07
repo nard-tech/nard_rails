@@ -1,4 +1,4 @@
-# Email address のフォーマットを確認するクラス
+# メールアドレスのフォーマットを確認するクラス
 class Nard::Rails::Email::FormatValidator < Nard::Rails::Common::FormatValidator
 
   private
