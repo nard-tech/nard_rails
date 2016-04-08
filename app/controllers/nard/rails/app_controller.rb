@@ -34,8 +34,9 @@ class Nard::Rails::AppController < ActionController::Base
 
   include Nard::Rails::ControllerExt::Ajax
 
-  # @!group Json
+  # @!group Format
 
+  include Nard::Rails::ControllerExt::Html
   include Nard::Rails::ControllerExt::Json
 
   # @!group RailsAdmin
