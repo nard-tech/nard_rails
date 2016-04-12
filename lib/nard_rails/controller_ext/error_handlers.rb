@@ -22,7 +22,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
     logger.error "Rendering 403 with exception: #{@exception.message}" if @exception
 
     if ajax_request?
-      render json: { error: '403 error' }, status: :forbidden , layout: nil
+      render json: { error: '403 error (forbidden)' }, status: :forbidden , layout: nil
     else
       render template: 'errors/forbidden', status: :forbidden , content_type: 'text/html'
     end
@@ -33,7 +33,7 @@ module Nard::Rails::ControllerExt::ErrorHandlers
     logger.error "Rendering 404 with exception: #{@exception.message}" if @exception
 
     if ajax_request?
-      render json: { error: '404 error' }, status: :not_found , layout: nil
+      render json: { error: '404 error (not found)' }, status: :not_found , layout: nil
     else
       render template: 'errors/not_found', status: :not_found , content_type: 'text/html'
     end
