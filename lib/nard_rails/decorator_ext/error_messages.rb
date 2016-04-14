@@ -21,16 +21,16 @@ module Nard::Rails::DecoratorExt::ErrorMessages
 
   def error_messages
     error_msgs = []
-    error_msg_when_failing_update = Settings::Static.messages.failing_update
+    error_msg_when_failed_to_update = Settings::Static.messages.failed_to_update
 
     if object.errors.any?
       object.errors.full_messages.each do | msg |
-        unless msg == error_msg_when_failing_update
+        unless msg == error_msg_when_failed_to_update
           error_msgs << msg
         end
       end
-      if object.errors.full_messages.include?(error_msg_when_failing_update)
-        error_msgs << error_msg_when_failing_update
+      if object.errors.full_messages.include?(error_msg_when_failed_to_update)
+        error_msgs << error_msg_when_failed_to_update
       end
     end
     error_msgs

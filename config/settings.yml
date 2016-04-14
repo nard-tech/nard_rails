@@ -1,2 +1,4 @@
 messages:
-  failing_update: '※ 更新に失敗しました。'
+  failed_to_create: '※ 作成に失敗しました。'
+  failed_to_update: '※ 更新に失敗しました。'
+  failed_to_save: '※ 保存に失敗しました。'
