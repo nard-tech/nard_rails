@@ -32,10 +32,16 @@ module Nard::Rails::DecoratorExt::Csv
 
   def to_csv
     self.class::INFOS_ON_CSV.values.map { |v|
-      ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InNormalRow.new(v, self).displayed_value
+      csv_displayed_value_of(v)
     }
   end
 
   # @!endgroup
+
+  private
+
+  def csv_displayed_value_of(v)
+    ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InNormalRow.displayed_value_of( v, self )
+  end
 
 end
