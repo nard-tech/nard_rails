@@ -20,7 +20,7 @@ module Nard::Rails::DecoratorExt::Csv
 
     def header_of_csv
       self::INFOS_ON_CSV.map { |column, v|
-      ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InHeaderRow.new(v, self, column).label
+      ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InHeaderRow.label_of( v, self, column )
       }
     end
 
