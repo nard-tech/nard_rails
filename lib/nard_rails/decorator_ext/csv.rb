@@ -33,7 +33,7 @@ module Nard::Rails::DecoratorExt::Csv
   def to_csv
     self.class::INFOS_ON_CSV.values.map { |v|
       ::Nard::Rails::CellDecorationService::Csv::InNormalRow.new(v, self).displayed_value
-    }.join(',')
+    }
   end
 
   # @!endgroup
