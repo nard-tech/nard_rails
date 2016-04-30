@@ -14,7 +14,7 @@ module Nard::Rails::ControllerExt::CsvFiles
   end
 
   def csv
-    send_data(@csv_generator.render, type: @csv_generator.type, filename: @csv_generator.filename)
+    send_data( @csv_generator.render, @csv_generator.to_options )
   end
 
   private

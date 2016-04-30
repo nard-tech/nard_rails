@@ -26,8 +26,8 @@ class Nard::Rails::CsvGenerator
     result.encode(@encode)
   end
 
-  def filename
-    "#{ @datum.model.name.underscore.pluralize }_#{ Time.now.strftime( "%Y%m%d%H%M%S" ) }.csv"
+  def to_options
+    { type: @type, filename: filename }
   end
 
   private
@@ -38,6 +38,10 @@ class Nard::Rails::CsvGenerator
 
   def contents
     @datum.map { | data | data.decorate.to_csv }
+  end
+
+  def filename
+    "#{ @datum.model.name.underscore.pluralize }_#{ Time.now.strftime( "%Y%m%d%H%M%S" ) }.csv"
   end
 
 end
