@@ -1,4 +1,4 @@
-class Nard::Rails::CellDecorationService::Common::InNormalRow < Nard::Rails::CellDecorationService::Common::Standard
+class Nard::Rails::DecoratorExt::CellDecoration::Common::InNormalRow < Nard::Rails::DecoratorExt::CellDecoration::Common::Standard
 
   def displayed_value
     @decorator.send(@attribute)

@@ -1,4 +1,4 @@
-module Nard::Rails::CellDecorationService::Common::WithColumn
+module Nard::Rails::DecoratorExt::CellDecoration::Common::WithColumn
 
   def initialize(v, decorator, column)
     @column = column

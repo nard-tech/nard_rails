@@ -1,7 +1,7 @@
 # 単一のモデルの各フィールドの情報を表示するリストの各行の値を扱うクラス
-class Nard::Rails::CellDecorationService::Html::Show::InNormalRow < Nard::Rails::CellDecorationService::Common::InNormalRow
+class Nard::Rails::DecoratorExt::CellDecoration::Html::Show::InNormalRow < Nard::Rails::DecoratorExt::CellDecoration::Common::InNormalRow
 
-  include Nard::Rails::CellDecorationService::Common::WithColumn
+  include Nard::Rails::DecoratorExt::CellDecoration::Common::WithColumn
 
   def class_names_of_tr( default = nil )
     ary = ( default.present? ? [default].flatten : [] )

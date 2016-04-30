@@ -1,7 +1,7 @@
 # 複数のモデルの情報を表示するリストの各行の値を扱うクラス
-class Nard::Rails::CellDecorationService::Html::List::InNormalRow < Nard::Rails::CellDecorationService::Common::InNormalRow
+class Nard::Rails::DecoratorExt::CellDecoration::Html::List::InNormalRow < Nard::Rails::DecoratorExt::CellDecoration::Common::InNormalRow
 
-  include Nard::Rails::CellDecorationService::Html::List::ClassNames
+  include Nard::Rails::DecoratorExt::CellDecoration::Html::List::ClassNames
 
   private
 

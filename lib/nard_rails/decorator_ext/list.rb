@@ -13,7 +13,7 @@ module Nard::Rails::DecoratorExt::List
           ary = []
 
           self::INFOS_ON_LIST_TABLE.each do |column, v|
-            d = ::Nard::Rails::CellDecorationService::Html::List::InHeaderRow.new(v, self, column)
+            d = ::Nard::Rails::DecoratorExt::CellDecoration::Html::List::InHeaderRow.new(v, self, column)
             ary << h.content_tag(:th, d.label, class: d.class_names('column-name'))
           end
           if btns_in_list
@@ -36,7 +36,7 @@ module Nard::Rails::DecoratorExt::List
       ary = []
 
       self.class::INFOS_ON_LIST_TABLE.values.each do |v|
-        d = ::Nard::Rails::CellDecorationService::Html::List::InNormalRow.new(v, self)
+        d = ::Nard::Rails::DecoratorExt::CellDecoration::Html::List::InNormalRow.new(v, self)
         ary << h.content_tag(:td, d.displayed_value, class: d.class_names)
       end
       if btns_in_list

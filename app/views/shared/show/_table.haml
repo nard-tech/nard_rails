@@ -1,7 +1,7 @@
 %table.list-tbl.info-tbl
   %tbody
     - infos_on_list_table.each do | column, v |
-      - c = ::Nard::Rails::CellDecorationService::Html::Show::InNormalRow.new(v, d, column)
+      - c = ::Nard::Rails::DecoratorExt::CellDecoration::Html::Show::InNormalRow.new(v, d, column)
       %tr{ class: c.class_names_of_tr }
         %td.label-cell<
           = c.label

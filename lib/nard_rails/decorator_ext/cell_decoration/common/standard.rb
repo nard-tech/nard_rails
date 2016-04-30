@@ -1,4 +1,4 @@
-class Nard::Rails::CellDecorationService::Common::Standard
+class Nard::Rails::DecoratorExt::CellDecoration::Common::Standard
 
   def initialize(v, decorator)
     @decorator = decorator

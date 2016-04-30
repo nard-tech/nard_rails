@@ -1,4 +1,4 @@
-module Nard::Rails::CellDecorationService::Html::List::ClassNames
+module Nard::Rails::DecoratorExt::CellDecoration::Html::List::ClassNames
 
   def class_names(default = nil)
     ary = ( default.present? ? [default].flatten : [] )
