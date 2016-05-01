@@ -56,9 +56,8 @@ module Nard::Rails::DecoratorExt::List
     h.content_tag(:tr, class: tr_class_of_list) {
       ary = []
 
-      self.class::INFOS_ON_LIST_TABLE.values.each do |v|
-        d = ::Nard::Rails::DecoratorExt::CellDecoration::Html::List::InNormalRow.new(v, self)
-        ary << h.content_tag(:td, d.displayed_value, class: d.class_names)
+      self.class::INFOS_ON_LIST_TABLE.each do | column, v |
+        ary << render_cell_in_list(v)
       end
       if btns_in_list
         ary << render_btns_in_list
@@ -80,6 +79,11 @@ module Nard::Rails::DecoratorExt::List
 
   def tr_class_of_list
     'info-in-list'
+  end
+
+  def render_cell_in_list(v)
+    d = ::Nard::Rails::DecoratorExt::CellDecoration::Html::List::InNormalRow.new(v, self)
+    h.content_tag(:td, d.displayed_value, class: d.class_names)
   end
 
   # @!endgroup
