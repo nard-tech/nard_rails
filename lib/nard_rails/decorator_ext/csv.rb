@@ -19,9 +19,14 @@ module Nard::Rails::DecoratorExt::Csv
     # @!group Class methods - Csv
 
     def header_of_csv
-      self::INFOS_ON_CSV.map { |column, v|
-      ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InHeaderRow.label_of( v, self, column )
-      }
+      ary = []
+
+      self::INFOS_ON_CSV.each do | column, v |
+        ary << ::Nard::Rails::DecoratorExt::CellDecoration::Csv::InHeaderRow.label_of( v, self, column )
+        yield( column, v, ary ) if block_given?
+      end
+
+      ary
     end
 
     # @!endgroup
