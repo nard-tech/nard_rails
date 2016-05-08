@@ -16,7 +16,9 @@ module Nard::Rails::ControllerExt::Ajax
   # @!group If xhr - Ajax を受け付けない場合
 
   def reject_if_xhr
-    raise Nard::Rails::Controller::AjaxError if ajax_request?
+    unless Rails.env.development?
+      raise Nard::Rails::Controller::AjaxError if ajax_request?
+    end
   end
 
   alias :redirect_if_xhr :reject_if_xhr
@@ -29,7 +31,9 @@ module Nard::Rails::ControllerExt::Ajax
   # @!group Unless xhr - Ajax のみを受け付ける場合
 
   def reject_unless_xhr
-    raise Nard::Rails::Controller::NotAjaxError unless ajax_request?
+    unless Rails.env.development?
+      raise Nard::Rails::Controller::NotAjaxError unless ajax_request?
+    end
   end
 
   alias :redirect_unless_xhr :reject_unless_xhr
