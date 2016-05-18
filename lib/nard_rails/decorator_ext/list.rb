@@ -7,10 +7,17 @@ module Nard::Rails::DecoratorExt::List
 
     # @!group Class methods - Rendering
 
-    def render_header_of_list( search_engine = nil, btns_in_list: true, rowspan: nil )
+    def render_header_of_list( search_engine = nil, btns_in_list: true, rowspan: nil, checkbox: nil )
       h.content_tag( :thead ) {
         first_row = h.content_tag(:tr, class: 'list-tbl__header') {
           ary = []
+
+          if checkbox
+            checkbox_options = ( checkbox.instance_of?( Hash ) ? checkbox : {} ).with_indifferent_access
+            checkbox_options[:rowspan] = rowspan
+            checkbox_options[ :class ] = 'checkbox-column' unless checkbox_options[ :class ].present?
+            ary << h.content_tag(:th, '', checkbox_options )
+          end
 
           self::INFOS_ON_LIST_TABLE.each do |column, v|
             ary << render_cell_in_header_of_list( v, column, search_engine )
@@ -55,10 +62,18 @@ module Nard::Rails::DecoratorExt::List
 
   # @!group Instance methods - Rendering
 
-  def render_in_list( btns_in_list: true )
-    h.content_tag(:tr, class: tr_class_of_list) {
+  def render_in_list( btns_in_list: true, checkbox: nil, id: nil, data: nil )
+    h.content_tag(:tr, class: tr_class_of_list, id: id, data: data ) {
       ary = []
 
+      if checkbox
+        checkbox_options = ( checkbox.instance_of?( Hash ) ? checkbox : {} ).with_indifferent_access
+        checkbox_options.merge!( type: :checkbox ) unless checkbox_options[:type].present?
+        checkbox_options.merge!( value: false ) unless checkbox_options[:value]
+        ary << h.content_tag( :td, class: 'checkbox__outer' ) {
+          h.tag( :input, checkbox_options )
+        }
+      end
       self.class::INFOS_ON_LIST_TABLE.each do | column, v |
         ary << render_cell_in_list(v)
       end
