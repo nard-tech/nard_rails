@@ -55,7 +55,7 @@ module Nard::Rails::ButtonHelper
     link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link ) : '' )
 
     if icon.present?
-      icon_classes = [ icon.to_s.dasherize ]
+      icon_classes = [ icon.to_s.dasherize, 'fw' ]
       icon_classes << "#{ icon_size }x" if icon_size.present?
       icon_and_text_html = fa_icon_nd( icon_classes, text: title )
     else
