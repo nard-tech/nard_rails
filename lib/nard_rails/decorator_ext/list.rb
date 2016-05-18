@@ -48,8 +48,10 @@ module Nard::Rails::DecoratorExt::List
     def render_cell_in_header_of_list( v, column, search_engine = nil )
       d = ::Nard::Rails::DecoratorExt::CellDecoration::Html::List::InHeaderRow.new(v, self, column)
 
-      th_content = ( d.with_sort_link? ? h.sort_link( search_engine, d.attribute, d.label ) : d.label )
-      th_content += h.content_tag( :span, ' *', class: :ast ) if d.with_sort_link?
+      sort_link_is_required = ( d.with_sort_link? and search_engine.present? )
+
+      th_content = ( sort_link_is_required ? h.sort_link( search_engine, d.attribute, d.label ) : d.label )
+      th_content += h.content_tag( :span, ' *', class: :ast ) if sort_link_is_required
 
       options = { class: d.class_names('column-name') }
 
