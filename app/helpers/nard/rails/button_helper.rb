@@ -44,13 +44,16 @@ module Nard::Rails::ButtonHelper
 
   # @!endgroup
 
-  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil )
+  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil, hidden: false )
     raise ArgumentError unless [ 'div', 'submit', 'submit_button' ].include?(tag_type.to_s)
     raise ArgumentError if title.present? and !( title.kind_of?( String ) or title.instance_of?( Symbol ) )
     raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
     raise ArgumentError unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
 
     div_classes = [ :btn, 'link-btn', "btn--#{ btn_class }", "btn-#{ layout_type }", :clr ]
+    if hidden
+      div_classes << :hidden
+    end
 
     link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link ) : '' )
 
