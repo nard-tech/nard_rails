@@ -53,6 +53,11 @@ ja:
       separated_by_hyphen: "%Y-%m-%d"
       day_name: '%a'
 
+      date_default: "%Y/%m/%d"
+      date_long: "%Y年%m月%d日（%a）"
+      date_short: "%m/%d"
+      date_without_year: "%m月%d日（%a）"
+
     month_names:
     -
     - 1月
