@@ -23,14 +23,22 @@ module Nard::Rails::DecoratorExt::Button
 
   # @!group Instance methods - Rendering
 
-  def render_btns_on_edit_page(name: nil, back: true)
+  def render_btns_on_edit_page(name: nil, back: true, other_btns: nil, path: nil, target_of_show_page: nil )
     name ||= "この#{ model_name_to_display }の情報"
     name += 'へ戻る' if back
+    path ||= object
 
     h.content_tag( :div, class: [:btns, 'btns--on-edit-page', :clr ] ) {
       btns = []
 
-      btns << h.basic_button(:div, name, btn_class: 'back-to-info', path: object, icon: Settings::Static.icons.back )
+      btns << h.basic_button(:div, name, btn_class: 'back-to-info', path: path, target: target_of_show_page, icon: Settings::Static.icons.back )
+
+      if other_btns.present?
+        [ other_btns ].flatten.each do | other_btn |
+          btns << other_btn
+        end
+      end
+
       btns << self.class.render_btn_for_list_page
 
       btns.join.html_safe
