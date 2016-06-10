@@ -44,18 +44,25 @@ module Nard::Rails::ButtonHelper
 
   # @!endgroup
 
-  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil, hidden: false )
+  def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, target: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil, hidden: false, additional_btn_classes: nil )
     raise ArgumentError unless [ 'div', 'submit', 'submit_button' ].include?(tag_type.to_s)
     raise ArgumentError if title.present? and !( title.kind_of?( String ) or title.instance_of?( Symbol ) )
-    raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
+    if btn_class.present?
+      raise ArgumentError unless btn_class.instance_of?( String ) or btn_class.instance_of?( Symbol )
+    end
     raise ArgumentError unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
+    raise ArgumentError if path.blank? and target.present?
 
-    div_classes = [ :btn, 'link-btn', "btn--#{ btn_class }", "btn-#{ layout_type }", :clr ]
-    if hidden
-      div_classes << :hidden
+    div_classes = [ :btn, 'link-btn', "btn-#{ layout_type }", :clr ]
+    div_classes << "btn--#{ btn_class }" if btn_class.present?
+    div_classes << :hidden if hidden
+
+    if additional_btn_classes.present?
+      div_classes << additional_btn_classes
+      div_classes.flatten!
     end
 
-    link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link ) : '' )
+    link_html = ( path.present? ? link_to( '', path, method: method_of_link, data: data_attr_of_link, target: target ) : '' )
 
     if icon.present?
       icon_classes = [ icon.to_s.dasherize, 'fw' ]
