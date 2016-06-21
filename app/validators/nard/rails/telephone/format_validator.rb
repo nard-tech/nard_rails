@@ -4,7 +4,11 @@ class Nard::Rails::Telephone::FormatValidator < Nard::Rails::Common::FormatValid
   private
 
   def valid_regexp
-    ApplicationController.helpers.tel_regexp
+    if options[:require_full] == true
+      ApplicationController.helpers.tel_regexp
+    else
+      ApplicationController.helpers.tel_regexp( area_code: false )
+    end
   end
 
   def error_class
