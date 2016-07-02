@@ -53,7 +53,8 @@ module Nard::Rails::ButtonHelper
     raise ArgumentError unless layout_type.instance_of?( String ) or layout_type.instance_of?( Symbol )
     raise ArgumentError if path.blank? and target.present?
 
-    div_classes = [ :btn, 'link-btn', "btn-#{ layout_type }", :clr ]
+    div_classes = [ :btn, "btn-#{ layout_type }", :clr ]
+    div_classes << 'link-btn' if path.present?
     div_classes << "btn--#{ btn_class }" if btn_class.present?
     div_classes << :hidden if hidden
 
