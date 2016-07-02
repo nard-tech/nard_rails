@@ -11,4 +11,8 @@ module Nard::Rails::DecoratorExt::CellDecoration::Common::WithColumn
     ApplicationController.helpers.t_dict( "#{ object_class.name }.#{ @column }" )
   end
 
+  def object_class
+    raise NotImplementedError
+  end
+
 end
