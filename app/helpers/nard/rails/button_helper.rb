@@ -1,49 +1,5 @@
 module Nard::Rails::ButtonHelper
 
-  # @!group Buttons
-
-  def menu_display_button( path = nil )
-    basic_button( :div, 'メニュー', btn_class: :menu, path: path, icon: Settings::Static.icons.menu, layout_type: :h , btn_id: 'js-menu-display-btn' )
-  end
-
-  def menu_fix_button
-    basic_button( :div, '表示を固定', btn_class: 'menu-fix', icon: Settings::Static.icons.fix, layout_type: :h, btn_id: 'js-menu-fix-btn' )
-  end
-
-  def create_button( controller = nil , layout_type: :h )
-    link_path = ( controller.present? ? url_for( controller: controller , action: :new ) : nil )
-
-    basic_button( :div, '新規登録', btn_class: 'creating-new', btn_id: 'js-create-btn', path: link_path, icon: Settings::Static.icons.add, layout_type: layout_type )
-  end
-
-  def submit_button( btn_id: nil , name: '登録', has_icon: true, icon: nil )
-    raise ArgumentError if icon.present? and !( has_icon )
-
-    icon ||= Settings::Static.icons.submit if has_icon
-
-    basic_button( :submit_button, name , btn_class: :save, btn_id: btn_id, icon: icon )
-  end
-
-  def search_button( btn_id: nil, name: '検索', has_icon: true, icon: nil )
-    raise ArgumentError if icon.present? and !( has_icon )
-
-    icon ||= Settings::Static.icons.search if has_icon
-
-    basic_button( :submit_button, name , btn_class: :search, btn_id: btn_id, icon: icon )
-  end
-
-  def shop_button( shop = nil )
-    raise ArgumentError unless shop.present?
-    basic_button( :div, shop.name, btn_class: :shop, btn_id: 'js-shop__btn', icon: Settings::Static.icons.shop )
-  end
-
-  def action_alert_button
-    title = content_tag( :div, '', class: ['n-alerts', :btn__content, 'n-alerts--default'], id: 'js-n-alerts' )
-    basic_button( :div, title, btn_class: 'action-alert', btn_id: 'js-action-alert__btn', icon: Settings::Static.icons.alert )
-  end
-
-  # @!endgroup
-
   def basic_button( tag_type, title = nil, btn_class: nil, btn_id: nil, path: nil, target: nil, layout_type: :h, icon: nil, icon_size: nil, method_of_link: nil, data_attr_of_link: nil, form: nil, children: nil, hidden: false, additional_btn_classes: nil, data_attributes: nil )
     raise ArgumentError unless [ 'div', 'submit', 'submit_button' ].include?(tag_type.to_s)
     raise ArgumentError if title.present? and !( title.kind_of?( String ) or title.instance_of?( Symbol ) )
