@@ -14,7 +14,7 @@ module Nard::Rails::ModelExt::SoftDelete
 
   def soft_delete!(options = {})
     assign_deleted_date
-    save!
+    save!( options.merge( context: :soft_delete ) )
   end
 
   alias :logical_delete! :soft_delete!
@@ -30,7 +30,7 @@ module Nard::Rails::ModelExt::SoftDelete
 
   def activate!(options = {})
     remove_deleted_date
-    save!
+    save!( options.merge( context: :soft_delete ) )
   end
 
   def activate(options = {})
