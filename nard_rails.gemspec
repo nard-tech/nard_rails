@@ -5,14 +5,14 @@ require "nard_rails/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "nard_rails"
-  s.version     = Nard::Rails::VERSION
-  s.authors     = ["Shu Fujita"]
+  s.name = 'nard_rails'
+  s.version = Nard::Rails::VERSION
+  s.authors = [ 'Shu Fujita' ]
   s.email = [ 's.fujita@nard.tech' ]
   s.homepage = 'https://github.com/nard-tech/nard_rails'
-  s.summary     = "NardRails."
-  s.description = "NardRails."
-  s.license     = "MIT"
+  s.summary = 'NardRails.'
+  s.description = 'NardRails.'
+  s.license = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
