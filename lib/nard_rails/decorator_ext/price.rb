@@ -5,14 +5,18 @@ module Nard::Rails::DecoratorExt::Price
 
   included do
 
-    object_class.column_names.each do | field_name |
-      if /(?:price|amount)/ === field_name and /^int/ === object_class.column_type( of: field_name )
-        eval <<-DEF
-          def #{ field_name }
-            yen( :#{ field_name })
-          end
-        DEF
+    unless ENV['SCHEMA_LOAD'].to_s == 'true'
+
+      object_class.column_names.each do | field_name |
+        if /(?:price|amount)/ === field_name and /^int/ === object_class.column_type( of: field_name )
+          eval <<-DEF
+            def #{ field_name }
+              yen( :#{ field_name })
+            end
+          DEF
+        end
       end
+
     end
 
   end
