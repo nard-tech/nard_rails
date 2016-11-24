@@ -19,20 +19,24 @@ module Nard::Rails::ModelExt::BooleanProcessor
 
   included do
 
-    boolean_field_types = ['tinyint(1)'] # MySQL の場合
+    unless ENV['SCHEMA_LOAD'].to_s == 'true'
 
-    column_names.each do |column|
-      if /^is_/ === column.to_s and boolean_field_types.include?(column_type(of: column).to_s)
-        eval <<-DEF
-          def #{column.to_s.gsub(/^is_/, '')}?
-            if #{column}
-              true
-            else
-              false
+      boolean_field_types = ['tinyint(1)'] # MySQL の場合
+
+      column_names.each do |column|
+        if /^is_/ === column.to_s and boolean_field_types.include?(column_type(of: column).to_s)
+          eval <<-DEF
+            def #{column.to_s.gsub(/^is_/, '')}?
+              if #{column}
+                true
+              else
+                false
+              end
             end
-          end
-        DEF
+          DEF
+        end
       end
+
     end
 
   end
