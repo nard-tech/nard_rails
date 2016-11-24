@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name        = "nard_rails"
   s.version     = Nard::Rails::VERSION
   s.authors     = ["Shu Fujita"]
-  s.email       = ["osorubeki.fujita@gmail.com"]
-  s.homepage    = "https://github.com/osorubeki-fujita/nard_rails"
+  s.email = [ 's.fujita@nard.tech' ]
+  s.homepage = 'https://github.com/nard-tech/nard_rails'
   s.summary     = "NardRails."
   s.description = "NardRails."
   s.license     = "MIT"
