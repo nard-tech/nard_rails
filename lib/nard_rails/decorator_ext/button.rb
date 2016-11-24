@@ -61,7 +61,7 @@ module Nard::Rails::DecoratorExt::Button
 
   # @!group Private instance methods - Rendering
 
-  def render_btns_on_show_page(_flash, options)
+  def render_buttons_on_show_page(_flash, options)
     other_btns = options[:other_btns]
     other_btns = [other_btns].flatten if other_btns.present?
 

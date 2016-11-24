@@ -40,7 +40,7 @@ module Nard::Rails::DecoratorExt::Master
     ary = []
 
     ary << render_table_on_show_page(options)
-    ary << render_btns_on_show_page(_flash, options)
+    ary << render_buttons_on_show_page(_flash, options)
 
     ary.join.html_safe
   end
