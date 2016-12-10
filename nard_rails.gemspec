@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.2.5"
   s.add_dependency 'twitter'
-  s.add_dependency 'require_all'
   s.add_dependency 'settingslogic'
 
   s.add_dependency 'draper'

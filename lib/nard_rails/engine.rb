@@ -1,5 +1,4 @@
 require 'rails/all'
-require 'require_all'
 
 require 'nard_rails'
 require 'twitter'
@@ -30,5 +29,8 @@ end
 
 [ 'controller_ext', 'model_ext', 'decorator_ext', 'gem_ext' ].each do | dirname |
   require_relative "./#{dirname}"
-  require_all File.join( Nard::Rails::Engine.root, 'lib', 'nard_rails', dirname, '**', '**.rb' )
+  files = Dir.glob( File.join( Nard::Rails::Engine.root, 'lib', 'nard_rails', dirname, '**', '**.rb' ) )
+  files.each do | file |
+    require file
+  end
 end
